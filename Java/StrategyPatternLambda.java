@@ -60,20 +60,6 @@ class BubbleSortStrategy implements SortStrategy {
 	
 	@Override
 	public void sort(int[] array) {
-//		int lowestIndex;
-//		for (int i=0; i<array.length; i++) {
-//			lowestIndex = i;
-//			for (int j=0; j<array.length; j++) {
-//				if (array[j] < array[lowestIndex]) {
-//					 lowestIndex = j;
-//					 int aux = array[i];
-//					 array[i] = array[lowestIndex];
-//					 array[j] = aux;
-//				}
-//			}	
-//		}
-
-		//int[] sorted2 = sorter.sort(test2);
 		int n = array.length;  
         int temp = 0;  
 		for(int i=0; i < n; i++){  
