@@ -10,9 +10,7 @@ using namespace std;
 class Person {
 	private:
 		int id;
-	private:
 		string name;
-	private:
 		int age;
 	public:
 		int getId();

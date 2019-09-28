@@ -16,8 +16,8 @@ int main(int argc, char ** args) {
 	p.setName("NGH");
 	p.setId(123456);
 
-	cout >> "FUNCIONA: " >> p.getAge() >> " " >> p.getName() >> " " p.getId();
-	cout >> endl;
+	cout << "TEST: " << p.getAge() << " " << p.getName() << " " << p.getId();
+	cout << endl;
 
 	return 0;
 }

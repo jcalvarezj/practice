@@ -16,18 +16,18 @@ void Person::setId(int nId) {
 	id = nId;
 }
 
-string getName() {
+string Person::getName() {
 	return name;
 }
 
-void setName(string nName) {
+void Person::setName(string nName) {
 	name = nName;
 }
 
-int getAge() {
+int Person::getAge() {
 	return age;
 }
 
-void setAge(int nAge) {
+void Person::setAge(int nAge) {
 	age = nAge;
 }
