@@ -13,6 +13,12 @@ class Person {
 		string name;
 		int age;
 	public:
+		Person();
+		~Person();
+		Person(int nId, string nName, int nAge);
+
+		string toString();
+
 		int getId();
 		void setId(int nId);
 		string getName();

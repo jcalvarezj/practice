@@ -16,8 +16,19 @@ int main(int argc, char ** args) {
 	p.setName("NGH");
 	p.setId(123456);
 
-	cout << "TEST: " << p.getAge() << " " << p.getName() << " " << p.getId();
+	cout << "p: " << p.toString();
 	cout << endl;
+
+	{
+		Person q(30,"James",80008);
+
+		cout << "q: " << q.toString();
+		cout << endl;
+	}
+
+	cout << "(Instance scope just happened)" << endl;
+
+	cout << "Program finishing..." << endl;
 
 	return 0;
 }
