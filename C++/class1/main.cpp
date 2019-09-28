@@ -12,7 +12,7 @@ int main(int argc, char ** args) {
 	
 	Person p;
 
-	p.setAge(15);
+	p.setAge(25);
 	p.setName("NGH");
 	p.setId(123456);
 
