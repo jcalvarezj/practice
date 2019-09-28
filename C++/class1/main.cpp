@@ -13,7 +13,7 @@ int main(int argc, char ** args) {
 	Person p;
 
 	p.setAge(25);
-	p.setName("NGH");
+	p.setName("Andre");
 	p.setId(123456);
 
 	cout << "p: " << p.toString();

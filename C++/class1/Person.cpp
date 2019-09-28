@@ -33,22 +33,22 @@ int Person::getId() {
 	return id;	
 }
 
-void Person::setId(int nId) {
-	id = nId;
+void Person::setId(int id) {
+	this->id = id;
 }
 
 string Person::getName() {
 	return name;
 }
 
-void Person::setName(string nName) {
-	name = nName;
+void Person::setName(string name) {
+	this->name = name;
 }
 
 int Person::getAge() {
 	return age;
 }
 
-void Person::setAge(int nAge) {
-	age = nAge;
+void Person::setAge(int age) {
+	this->age = age;
 }
