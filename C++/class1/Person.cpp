@@ -13,10 +13,10 @@ Person::Person() {
 
 }
 
-Person::Person(int nId, string nName, int nAge) {
-	id = nId;
-	name = nName;
-	age = nAge;
+Person::Person(int id, string name, int age) {
+	this->id = id;
+	this->name = name;
+	this->age = age;
 }
 
 Person::~Person() {
