@@ -15,7 +15,7 @@ void imprimeArreglo(int * arr, int tam) {
 	cout << endl;
 }
 
-void imprimeMatrizCuadrada(int * mat[], int tam) {
+void imprimeMatrizCuadrada(int mat[][3], int tam) {
 	for (int i=0; i<tam; i++) {
 		for (int j=0; j<tam; j++) 
 			cout << " " << mat[i][j] << " "; 
