@@ -85,7 +85,20 @@ int main(int argc, char ** args) {
 		pStart++;
 	} while (pStart != pEnd);
 
-	cout << "Now at: " << * pStart << endl; 
+	cout << "Now at: " << * pStart << endl;
+
+	//
+	// AND BACKWARDS
+	//
+
+	pStart = S;
+
+	do {
+		cout << "Now at: " << * pEnd << endl;
+		pEnd--;
+	} while (pEnd != pStart);
+
+	cout << "Now at: " << * pEnd << endl;
 
 	return 0;
 }
