@@ -5,21 +5,18 @@
  */
 #include <iostream>
 
-using namespace std;
-
-
 void imprimeArreglo(int * arr, int tam) {
 	for (int i=0; i<tam; i++) 
-		cout << " " << arr[i] << " ";	
+		std::cout << " " << arr[i] << " ";	
 
-	cout << endl;
+	std::cout << std::endl;
 }
 
 void imprimeMatrizCuadrada(int mat[][3], int tam) {
 	for (int i=0; i<tam; i++) {
 		for (int j=0; j<tam; j++) 
-			cout << " " << mat[i][j] << " "; 
-		cout << endl;
+			std::cout << " " << mat[i][j] << " "; 
+		std::cout << std::endl;
 	}
 }
 

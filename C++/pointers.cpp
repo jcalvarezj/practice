@@ -5,8 +5,6 @@
  */
 #include <iostream>
 
-using namespace std;
-
 void modify(int * refVar);
 void printArray(int * arr, int size);
 
@@ -19,18 +17,18 @@ int main(int argc, char ** args) {
 	int a = 3;
 	int * pA = &a;
 
-	cout << "The value of the address is " << pA << endl;
-	cout << "The value in the address is " << * pA << endl;
+	std::cout << "The value of the address is " << pA << std::endl;
+	std::cout << "The value in the address is " << * pA << std::endl;
 
 	* pA = 888;
 	
-	cout << "New value by hand is " << a << endl;
+	std::cout << "New value by hand is " << a << std::endl;
 
 	modify(&a);
 
-	cout << "New value by method is " << a << endl;
+	std::cout << "New value by method is " << a << std::endl;
 
-	cout << "------------------------------------" << endl;
+	std::cout << "------------------------------------" << std::endl;
 
 	//
 	// ARRAY BASIC EXAMPLES
@@ -40,34 +38,35 @@ int main(int argc, char ** args) {
 	int * pNum = X;
 	int n = sizeof(X)/sizeof(int);
 
-	cout << "Before modifying array" << endl; 
+	std::cout << "Before modifying array" << std::endl; 
 
 	printArray(X,n);
 
 	pNum[0] = 8;
 
-	cout << "After modifying array" << endl; 
+	std::cout << "After modifying array" << std::endl; 
 
 	printArray(X,n);
 
-	cout << "If we print our pointer as array" << endl;
+	std::cout << "If we print our pointer as array" << std::endl;
 
 	printArray(pNum,n);
 
 	pNum++;
 
-	cout << "If we move our pointer" << endl; 
+	std::cout << "If we move our pointer" << std::endl; 
 
 	printArray(pNum,n-1);
 
-	cout << "So, the first position pNum[0] is " << pNum[0] << endl; 
+	std::cout << "So, the first position pNum[0] is " << pNum[0] << std::endl; 
 
 	pNum = &X[3];
 	
-	cout << "Making the pointer point at the 4th position directly" << endl;
+	std::cout << "Making the pointer point at the 4th position directly"
+	   << std::endl;
 
 	printArray(pNum,n-3);	
-	cout << "------------------------------------" << endl;
+	std::cout << "------------------------------------" << std::endl;
 
 	//
 	// MOVING POINTER IN A STRUCTURE
@@ -81,11 +80,11 @@ int main(int argc, char ** args) {
 	int * pEnd = &S[size-1];
 
 	do {
-		cout << "Now at: " << * pStart << endl; 
+		std::cout << "Now at: " << * pStart << std::endl; 
 		pStart++;
 	} while (pStart != pEnd);
 
-	cout << "Now at: " << * pStart << endl;
+	std::cout << "Now at: " << * pStart << std::endl;
 
 	//
 	// AND BACKWARDS
@@ -94,11 +93,11 @@ int main(int argc, char ** args) {
 	pStart = S;
 
 	do {
-		cout << "Now at: " << * pEnd << endl;
+		std::cout << "Now at: " << * pEnd << std::endl;
 		pEnd--;
 	} while (pEnd != pStart);
 
-	cout << "Now at: " << * pEnd << endl;
+	std::cout << "Now at: " << * pEnd << std::endl;
 
 	return 0;
 }
@@ -109,6 +108,6 @@ void modify(int * refVar) {
 
 void printArray(int * arr, int size) {
 	for (int i=0; i<size; i++)
-		cout << " " << arr[i] << " ";
-   	cout << endl;
+		std::cout << " " << arr[i] << " ";
+   	std::cout << std::endl;
 }

@@ -1,13 +1,15 @@
+/*
+ * Hello world
+ * @author J. Alvarez
+ */
 #include <iostream>
-using namespace std;
 
 int main() {
 
-	cout << "FUCK YEAH" << endl;
-	cout << "ENTER SOMETHING WILL YA!? " << flush;
-	string something;
-	cin >> something;
-	cout << endl << "SOMETHING!! " << something << endl;
+	std::cout << "ENTER SOMETHING WILL YA!? " << std::flush;
+	std::string something;
+	std::cin >> something;
+	std::cout << std::endl << "SOMETHING!! " << something << std::endl;
 
 	return 0;
 
