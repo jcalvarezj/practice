@@ -1,8 +1,8 @@
 /*
-*  // Description goes here
-*
-*  @author J. Alvarez
-*/
+ * // Description goes here
+ *
+ * @author J. Alvarez
+ */
 
 #include <stdlib>
 #include <stdio.h>
