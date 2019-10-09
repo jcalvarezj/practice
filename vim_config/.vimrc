@@ -13,8 +13,9 @@ ab sout System.out.println("");
 ab cout std::cout << "" << var << std::endl;
 ab fori for(int i=0; i<n; i++) {<C-v> <CR>}
 ab foreach for(Type t: structure) {<C-v> <CR>}
-autocmd BufNewFile *.java 0r ~/.vim/templates/skeleton.java
 autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp
 autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c
 autocmd BufNewFile *.h 0r ~/.vim/templates/skeleton.h
 autocmd BufNewFile *.html 0r ~/.vim/templates/skeleton.html
+autocmd BufNewFile *.java 0r ~/.vim/templates/skeleton.java
+autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py
