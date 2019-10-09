@@ -8,16 +8,21 @@
 
 
 class Animal {
+	private:
+		std::string name;
 	public:
 		void live() {
 			std::cout << name << " living" << std::endl;
+			eat();
 		}
 
 		void setName(std::string name) {
 			this->name = name;
 		}
 	private:
-		std::string name;
+		void eat() {
+			std::cout << "I eat stuff" << std::endl;
+		}
 };
 
 class Cat: public Animal {
@@ -36,10 +41,12 @@ class Dog: public Animal {
 
 int main(int argc, char ** args) {
 	Cat c;
+	c.setName("Louis");
 	c.live();
 	c.meow();
 
 	Dog d;
+	d.setName("Dudley");
 	d.live();
 	d.bark();
 
