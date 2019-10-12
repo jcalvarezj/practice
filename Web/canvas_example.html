@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--Basado en los ejemplos de John Freddy Vega de Platzi,
+Por resumir, aqui no se sigue la buena práctica de separar archivos-->
+<html>
+	<head>
+		<title>Hola Mundo</title>
+		<meta charset="utf-8" />
+		<style type="text/css">
+		body {
+			background-color: blue;
+			color: gold;
+			font-family: Lucida Console;
+		}
+	
+		h1 {
+			background-color: purple;
+		}
+		
+		#dibujo {
+			background-color: white;
+			border-color: black;
+			border-width: 7px;
+			border-style: solid;
+		}
+
+		</style>
+	</head>
+
+	<body>
+		<h1>Jugando con el Document Object Model</h1>
+
+		<p>Resultado:</p>
+
+		<script type="text/javascript">
+			var ruta = window.location;
+			document.write("Estamos ubicados en: " + ruta);
+		</script>
+
+		<br>
+		<hr>
+
+		<h1>Jugando con Canvas</h1>
+		<canvas width="500" height="500" id="dibujo"></canvas>
+		<p>Fin de Canvas</p>
+		
+		<script type="text/javascript">
+			var canvas = document.getElementById("dibujo");
+			var lienzo = canvas.getContext("2d");
+
+			for (var i = 0; i <= canvas.width; i+=5) {
+				dibujarLinea("green",0,i,i,0);
+			}			
+
+			function dibujarLinea(color, xin, xfin, yin, yfin) {
+				lienzo.beginPath();
+				lienzo.strokeStyle = color;
+				lienzo.moveTo(xin,xfin);
+				lienzo.lineTo(yin,yfin);
+				lienzo.stroke();
+				lienzo.closePath();
+			}
+		</script>
+		
+		<h1>Otro Canvas</h1>
+		<canvas width="500" height="500" id="otro"></canvas>
+		<p>Fin de Canvas</p>
+		
+		<script type="text/javascript">
+			var canvas = document.getElementById("otro");
+			var lienzo = canvas.getContext("2d");
+
+			for (var i = 0; i <= canvas.width; i+=5) {
+				dibujarLinea("green",0,i,i,canvas.height);
+			}
+
+			dibujarLinea("gold",1,1,1,canvas.height-1);
+			dibujarLinea("gold",1,canvas.height,canvas.width-1,canvas.height-1);
+
+			function dibujarLinea(color, xin, xfin, yin, yfin) {
+				lienzo.beginPath();
+				lienzo.strokeStyle = color;
+				lienzo.moveTo(xin,xfin);
+				lienzo.lineTo(yin,yfin);
+				lienzo.stroke();
+				lienzo.closePath();
+			}
+		</script>
+	</body>
+</html>
