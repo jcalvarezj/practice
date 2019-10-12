@@ -1,0 +1,14 @@
+body {
+	background-color: blue;
+	color: gold;
+	font-family: Lucida Console;
+}
+h1 {
+	background-color: purple;
+}
+#dibujo {
+	background-color: white;
+	/*border-color: black;
+	border-width: 7px;
+	border-style: solid;*/
+}

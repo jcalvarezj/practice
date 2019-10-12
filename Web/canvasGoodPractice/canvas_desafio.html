@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--Basado en los ejemplos de John Freddy Vega de Platzi-->
+<html>
+	<head>
+		<title>Hola Mundo</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="estilo.css" />
+	</head>
+	<body>
+		<h1>Jugando con el Document Object Model</h1>
+		<p>Resultado:</p>
+		<script type="text/javascript">
+			var ruta = window.location;
+			document.write("Estamos ubicados en: " + ruta);
+		</script>
+
+		<br>
+		<hr>
+
+		<h1>Jugando con Canvas</h1>
+		<p>¿Cuántas líneas quieres?</p>
+		<input type="text" id="texto_lineas" />
+		<input type="button" value="VAMOS!" id="boton" />
+		<br>
+		<br>
+		<canvas width="500" height="500" id="dibujo"></canvas>
+		<p>Fin de Canvas</p>
+
+		<script type="text/javascript" src="dibujar.js" ></script>
+	</body>
+</html>
