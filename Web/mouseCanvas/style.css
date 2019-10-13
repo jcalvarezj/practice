@@ -1,0 +1,11 @@
+body {
+	background-color: blue;
+	color: gold;
+	font-family: Lucida Console;
+}
+h1 {
+	background-color: purple;
+}
+canvas {
+	background-color: white;
+}

@@ -7,12 +7,20 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
-		<h1>Play with arrow keys!</h1>
-		<br>
-		<br>
+		<h1>
+			Draw lines on the canvas! Hold and move around to draw 
+		</h1>
+		<br/>
+		<p>Please select a color</p>
+		<select id="selectColor">
+			<option value="red">Red</option>
+			<option value="blue">Blue</option>
+			<option value="green">Green</option>
+		</select>
+		<br/>
+		<br/>
 		<canvas width="500" height="500" id="myCanvas"></canvas>
-		<p>Canvas Ends here</p>
-
+		<p>Canvas ends here</p>
 		<script type="text/javascript" src="draw.js" ></script>
 	</body>
 </html>
