@@ -2,3 +2,5 @@
 *.o
 *.out
 */borradores
+*.swp
+*.swo
