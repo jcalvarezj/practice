@@ -1,3 +1,6 @@
+/*
+ * Based on John Freddy Vega's examples from Platzi
+ */
 document.addEventListener("keyup",drawWithArrows);
 
 var keys = {

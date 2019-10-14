@@ -1,3 +1,6 @@
+/*
+ * Based on John Freddy Vega's examples from Platzi
+ */
 var x = 0;
 var y = 0;
 var xMov = 0;

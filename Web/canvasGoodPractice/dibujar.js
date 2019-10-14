@@ -1,3 +1,6 @@
+/*
+ * Based on John Freddy Vega's examples from Platzi
+ */
 var texto = document.getElementById("texto_lineas");
 var boton = document.getElementById("boton");
 
