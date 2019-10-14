@@ -1,5 +1,5 @@
 /*
- * Logic of farm.html for pig movement with arrow keys goes here
+ * Logic of pakiman.html for the Pakidex goes here
  * Based on John Freddy Vega's examples from Platzi
  */
 

@@ -1,3 +1,7 @@
+/*
+ * Pakiman class for the Pakidex 
+ * Based on John Freddy Vega's examples from Platzi
+ */
 class Pakiman {
 	constructor(name,hp,atk,type) {
 		this.name = name;
