@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--Based on John Freddy Vega's examples from Platzi
+	@author J. Alvarez-->
+<html>
+	<head>
+		<title>ATM EXAMPLE</title>
+		<meta charset="UTF-8" />
+		<link type="text/css" rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<p>
+			<img src="cajero.gif"/>
+		</p>
+		<p>
+			Current money in the ATM: <p id="totalMoney"></p>
+		</p>
+		<p>
+			Current bills in the machine: <br/>
+			<p id="currentBills"></p>
+		</p>
+		<h1>Enter your desired amount of money:</h1>
+		<input type="number" id="txtAmount"/>
+		<input type="button" value="GO!" id="btnGo"/>
+		<h1>Result:</h1>
+		<p id="answer"></p>		
+		<script type="text/javascript" src="BillPack.js"></script>
+		<script type="text/javascript" src="logic.js"></script>
+	</body>
+</html>
+
