@@ -17,5 +17,4 @@ function asdf(request, response) {
 			+"ASDF MOVIE</a>");
 }
 
-//application.listen(8080,"192.168.1.63");
 application.listen(8080);
