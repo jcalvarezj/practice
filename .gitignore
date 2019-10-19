@@ -2,6 +2,7 @@
 *.o
 *.out
 */borradores
+/borradores
 *.swp
 *.swo
 */node_modules
