@@ -7,7 +7,16 @@ void main() {
   var ages = [33, 15, 27, 40, 22];
   var total = 0;
   ordenar(ages,0,ages.length-1);
-  print("Se ha ordenado: $ages");
+  print("Ordenado queda: $ages");
+  print("La edad menor es: ${ages[0]}; la edad mayor es: ${ages[ages.length-1]}");
+
+  ages.forEach((age) => total+=age);
+  print("La edad promedio es: ${total/ages.length}");
+}
+
+double promedio(var arreglo) {
+  var total = 0;
+
 }
 
 void ordenar(var arreglo, var i, var j) {
