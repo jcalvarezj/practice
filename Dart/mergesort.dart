@@ -14,11 +14,6 @@ void main() {
   print("La edad promedio es: ${total/ages.length}");
 }
 
-double promedio(var arreglo) {
-  var total = 0;
-
-}
-
 void ordenar(var arreglo, var i, var j) {
   var n = j-i+1;
   if (n > 1) {
@@ -70,5 +65,4 @@ void mezcla(var arreglo, var inicioIzq, var inicioDer, var fin) {
     arreglo[k] = mezclado[i];
     k++;
   }
-
 }
