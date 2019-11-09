@@ -2,15 +2,28 @@
  * Basic Kotlin example. Recipes Maker application with standard console input and output
  * @author J. Alvarez
  */
-import java.lang.NumberFormatException
+
+fun makeRecipe() {
+    val ingredientes: List<String> = listOf("Agua", "Leche", "Carne", "Verduras", "Frutas", "Cereal", "Huevos", "Aceite", "Guardar y Salir")
+
+    println("Hacer receta\nSelecciona por categoría el ingrediente que buscas")
+
+    for ((indice, ingrediente) in ingredientes.withIndex())
+        println("${indice + 1}. $ingrediente")
+}
+
+fun viewRecipe(opcion: Int, opciones: List<String>) {
+    println("${opciones[opcion]}\n")
+}
 
 fun main() {
     val ingredientes: List<String> = listOf("Agua", "Leche", "Carne", "Verduras", "Frutas", "Cereal", "Huevos", "Aceite", "Guardar y Salir")
+    val opciones: List<String> = listOf("Hacer una receta", "Ver mis recetas", "Salir")
     val cabecera: String = """:: Bienvenido a Recipe Maker ::
         |Selecciona la opción deseada
-        |1. Hacer una receta
-        |2. Ver mis recetas
-        |3. Salir
+        |1. ${opciones[0]}
+        |2. ${opciones[1]}
+        |3. ${opciones[2]}
     """.trimMargin()
 
     var recetas: MutableList<MutableList<String>> = mutableListOf()
@@ -24,6 +37,7 @@ fun main() {
 
         try {
             var seleccion: Int = readLine()?.toInt() ?: 0
+            viewRecipe(seleccion-1, opciones)
 
             when (seleccion) {
                 1 -> {
@@ -45,7 +59,7 @@ fun main() {
                                 ingredientes.size.minus(1) -> {
                                     recetas.add(recetaActual)
                                     agregandoIngredientes = false
-                                    println("Se ha guardado la receta")
+                                    println("Se ha guardado la receta\n")
                                 }
                             }
                         }
