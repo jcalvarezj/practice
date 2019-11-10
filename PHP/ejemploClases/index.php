@@ -9,18 +9,26 @@
 	<body>
 		<div id="content">
 <?php
-	require "Account.php";
-	echo "<b>Ejemplo muy basico de Orientacion a Objetos</b><br/>";
-/*
-	$cuenta = new Account();
-	$cuenta->id = 123456789;
-	$cuenta->name = "sadfasdfasdf";
+require "Account.php";
+require "Car.php";
 
-	echo "<b>Cuenta sin constructor: "+$cuenta->toString()+"</b>";
- */
-	$cuentaConstruc = new Account(8888,"nombre");
+echo "<b>Ejemplo muy basico de Orientacion a Objetos</b><br/><br/>";
+	
+$cuentaConstruc = new Account(8888,"nombre");
 
-	echo "<b>Cuenta con constructor: ".$cuentaConstruc->toString()."</b>";
+echo "<b>Datos de Cuenta:</b> ".$cuentaConstruc->toString()."<br/>";
+
+$carro = new Car();
+$carro->driver = "Andres Herrera";
+$carro->license = "AMQ123";
+$carro->passenger = 4;
+
+echo generarMensaje("Datos del carro","$carro->driver maneja $carro->license");
+
+
+function generarMensaje($titulo, $mensaje) {
+	return "<p><b>$titulo</b> $mensaje<br/></p>";
+}
 ?>
 		</div>
 	</body>
