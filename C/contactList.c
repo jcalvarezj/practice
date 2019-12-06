@@ -77,6 +77,10 @@ int main() {
 	} while(!stop);
 
 	showList(list, listSize);
+	
+	printf("Program finished. Cleaning memory\n\n");
+
+	free(list);
 
 	return 0;
 }
