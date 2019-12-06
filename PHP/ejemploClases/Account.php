@@ -6,12 +6,15 @@ class Account {
 	public $email;
 	public $password;
 
-	function __construct($id, $name) {
-		$this->id = $id;
+	function __construct($name, $document, $email, $password) {
 		$this->name = $name;
+		$this->document = $document;
+		$this->email = $email;
+		$this->password = $password;
 	}
 
 	function toString() {
-		return "id: $this->id\nname: $this->name";
+		return "document: $this->document -- name: $this->name -- email: ".
+			"$this->email";
 	}
 }
