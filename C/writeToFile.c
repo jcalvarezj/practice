@@ -14,8 +14,6 @@ int main(int argc, char ** args) {
 	if(!file) {
 		printf("Sorry, I can't write on that file\n");
 
-		fclose(file);
-
 		return 1;
 	}
 
