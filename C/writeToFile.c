@@ -13,6 +13,9 @@ int main(int argc, char ** args) {
 
 	if(!file) {
 		printf("Sorry, I can't write on that file\n");
+
+		fclose(file);
+
 		return 1;
 	}
 
@@ -35,9 +38,10 @@ int main(int argc, char ** args) {
 
 		} while (!stop);
 
+		fclose(file);
+
 		return 0;
 	}
 
-	fclose(file);
 }
 
