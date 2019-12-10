@@ -1,5 +1,6 @@
 /*
- * Basic queue example
+ * Basic queue example. Doesn't alter the queue elements' position value.
+ * This queue is not limited to a fix number of maximum amount of elements.
  *
  * @author J. Alvarez
  */
@@ -26,9 +27,10 @@ typedef struct Queue {
 
 Node * createNode(String data);
 void printNode(Node * node);
+void freeNodeMemory(Node * node);
 Queue * createQueue();
 void enqueue(Queue ** queue, Node * node);
-Node * dequeue(Queue * queue); //TODO
+Node * dequeue(Queue ** queue); //Please free that node's memory after used
 Node * peek(Queue * queue);
 void printQueue(Queue * queue);
 void freeQueueMemory(Queue * queue);
@@ -38,21 +40,35 @@ int main() {
 	Node * n1 = createNode("Pepe");
 	Node * n2 = createNode("Andrea");
 	Node * n3 = createNode("Steven");
+	Node * n4 = createNode("Darla");
 
 	Queue * q = createQueue();
 
 	enqueue(&q,n1);
 	enqueue(&q,n2);
 	enqueue(&q,n3);
+	enqueue(&q,n4);
 
 	printQueue(q);
 
 	printf("The front of the queue is: ");
 	printNode(peek(q));
 
-//	q = dequeue();
+	Node * nextInQ = dequeue(&q);
 
-//	printQueue(q);
+	printf("I have dequeued:");
+	printNode(nextInQ);
+
+	printf("Disposing it for good...\n");
+	freeNodeMemory(nextInQ);
+
+	printf("So the new front is: ");
+	printNode(peek(q));
+
+	printf("And now the queue is...\n");
+
+	printQueue(q);
+
 	freeQueueMemory(q);
 
 	return 0;
@@ -67,7 +83,15 @@ Node * createNode(String data) {
 }
 
 void printNode(Node * node) {
-	printf("[%d]: %s\n",node->pos,node->info);
+	if(!node)
+		printf("NULL\n");
+	else
+		printf("[%d]: %s\n",node->pos,node->info);
+}
+
+void freeNodeMemory(Node * node) {
+	if(node)
+		free(node);
 }
 
 Queue * createQueue() {
@@ -86,6 +110,7 @@ void enqueue(Queue ** queue, Node * node) {
 		(*queue)->size = 1;
 	}
 	else {
+		printNode(node);
 		node->pos = (*queue)->rear->pos + 1;
 		(*queue)->rear->next = node;
 		(*queue)->rear = node;
@@ -94,8 +119,23 @@ void enqueue(Queue ** queue, Node * node) {
 	}
 }
 
-Node * dequeue(Queue * queue) {
-	return NULL;
+Node * dequeue(Queue ** queue) {
+	if(!(*queue))
+		return NULL;
+	else {
+		Node * head = (*queue)->front;
+
+		if(!head->next) {
+			(*queue)->front = NULL;
+			(*queue)->rear = NULL;
+		}
+		else
+			(*queue)->front = head->next;
+
+		(*queue)->size--;
+
+		return head;
+	}
 }
 
 Node * peek(Queue * queue) {
@@ -113,11 +153,11 @@ void printQueue(Queue * queue) {
 	else {
 		char * plural = queue->size == 1 ? "element" : "elements";
 		printf("The queue has %d %s and is as follows:\n",queue->size, plural);
-		printNode(aux);
-		while(aux->next) {
-			printNode(aux->next);
+		do {
+			printNode(aux);
 			aux = aux->next;
-		}
+		} while(aux->next);
+		printNode(aux);
 	}	
 }
 
