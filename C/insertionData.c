@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define MAX_LENGTH 6
+#define MAX_LENGTH 10
 
 void printArray(int array[], int n) {
 	int i;
@@ -47,6 +47,7 @@ int main(int argc, char ** args) {
 	int A[size];
 
 	fseek(input, SEEK_SET, 0);
+
 	while(fgets(buffer,MAX_LENGTH,input)) {
 		A[i] = atoi(buffer);
 		i++;
@@ -58,11 +59,10 @@ int main(int argc, char ** args) {
 	insertionSort(A,size);
 	
 	printf("\n-------------------------------------------------------------\n");
-
 	printf("\nThe sorted array is this one:\n");
 
 	printArray(A,size);
-	
+
 	fclose(input);
 
 	return 0;
