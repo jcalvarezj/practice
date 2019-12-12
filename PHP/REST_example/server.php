@@ -42,6 +42,11 @@ switch(strtoupper($_SERVER['REQUEST_METHOD'])) {
 			echo "HEY, YOU FORGOT THE ID ON THE URL!!!";
 		break;
 	case 'DELETE':
+		if(!empty($resource_id) && array_key_exists($resource_id, $resource)) {
+			unset($resource[$resource_id]);
+
+			echo json_encode($resource);
+		}
 		break;
 }
 
