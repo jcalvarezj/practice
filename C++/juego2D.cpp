@@ -137,6 +137,7 @@ void setPositionFromFile(int * posI, int * posJ) {
 					found = true;
 				}
 			}
+			currentLine++;
 		}
 
 		if(!found) {
