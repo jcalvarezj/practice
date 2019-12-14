@@ -11,6 +11,7 @@ set matchpairs+=<:>
 ab psvm public static void main(String[] args) {<C-v> <CR>}
 ab sout System.out.println("");
 ab cout std::cout << "" << var << std::endl;
+ab cin std::cin >> var;
 ab fori for(int i=0; i<n; i++) {<C-v> <CR>}
 ab foreach for(Type t: structure) {<C-v> <CR>}
 autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp
