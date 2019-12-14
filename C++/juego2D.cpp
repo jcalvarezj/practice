@@ -146,13 +146,13 @@ void setPositionFromFile(int * posI, int * posJ) {
 		}
 
 		if(!found) {
-			std::cout << "Could not find saved position in file. File is not";
-			std::cout << " valid. Using origin position" << std::endl;
+			std::cout << "Could not find saved position in file. File is not"
+				<< " valid. Using origin position" << std::endl;
 		}
 	}
 	else {
-		std::cout << "Could not open save file " << SAVE_FILE << ", using ";
-		std::cout << "origin position" << std::endl;
+		std::cout << "Could not open save file " << SAVE_FILE << ", using "
+			<< "origin position" << std::endl;
 	}
 
 	inputFile.close();
