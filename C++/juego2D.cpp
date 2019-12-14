@@ -1,5 +1,8 @@
 /*
- * Basic 1D game thingy
+ * Basic CLI 2D game thingy. A character moving around a 2D map, according to
+ * user input. Saves state in a file.
+ *
+ * For Platzi's C++ course challenge.
  *
  * @author J. Alvarez
  */
@@ -82,7 +85,8 @@ int main() {
 	return 0;
 }
 
-void inputAction(const char map[][M], int * posI, int * posJ, char action, bool * gameOver) {
+void inputAction(const char map[][M], int * posI, int * posJ, char action,
+	   bool * gameOver) {
 	switch(std::toupper(action)) {
 		case LEFT:
 			if(* posJ > 0)
@@ -168,7 +172,7 @@ void saveGame(char map[][M], int posI, int posJ) {
 		}
 	}
 	else
-		std::cout << "Could not open " << SAVE_FILE << "OS problem?" << std::endl;
+		std::cout << "Couldn't open " << SAVE_FILE << "OS problem" << std::endl;
 
 	saveFile.close();
 }
