@@ -28,7 +28,8 @@
  * @param pos The pointer to the current vertical character position
  * @param action The action character entered by user
  */
-void inputAction(const char map[][M], int * posI, int * posJ, char action, bool * gameOver);
+void inputAction(const char map[][M], int * posI, int * posJ, char action,
+		bool * gameOver);
 
 /*
  * Prints the current status of the specified map
