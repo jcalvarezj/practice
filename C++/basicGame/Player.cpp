@@ -10,7 +10,8 @@
 
 Player::Player(std::string name): name(name) {
 	x = 0;
-	y = 0;	
+	y = 0;
+	alive = true;
 }
 
 void Player::getUserInput() {
@@ -30,6 +31,9 @@ void Player::getUserInput() {
 		case DOWN:
 			y++;
 			break;
+		case DIE:
+			alive = false;
+			break;
 	}
 
 	std::cout << "Hero at " << x << ", " << y << std::endl;
@@ -41,4 +45,8 @@ int Player::getX() {
 
 int Player::getY() {
 	return y;
+}
+
+bool Player::isAlive() {
+	return alive;
 }

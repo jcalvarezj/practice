@@ -12,6 +12,10 @@ int main(int argc, char ** args) {
 	Player hero("Pepe");
 	Map map;
 
+	std::cout << "Loading map..." << std::endl; 
+
+	map.loadMap();
+
 	std::cout << "Game start" << std::endl;
 
 	map.setPlayerCell(hero.getX(), hero.getY());
@@ -21,7 +25,12 @@ int main(int argc, char ** args) {
 		hero.getUserInput();
 		map.setPlayerCell(hero.getX(), hero.getY());
 		map.drawMap();
+		gameOver = !hero.isAlive();
 	}
+
+	std::cout << "-- GAME OVER --" << std::endl; 
+
+	map.saveMap();
 
 	return 0;
 }

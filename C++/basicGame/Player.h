@@ -12,8 +12,10 @@ public:
 	void getUserInput();
 	int getX();
 	int getY();
+	bool isAlive();
 private:
 	int x,y;
+	bool alive;
 	std::string name;
 };
 
