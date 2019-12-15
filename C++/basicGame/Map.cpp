@@ -66,7 +66,8 @@ void Map::loadMap() {
 		
 		while(getline(inputFile, buffer)) {
 			for(int k = 0; k < buffer.length(); k++)
-				cells[currentLine][k].setId(buffer[k]);
+				if(buffer[k] != CELL_ICON)
+					cells[currentLine][k].setId(buffer[k]);
 
 			currentLine++;
 		}

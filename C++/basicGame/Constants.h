@@ -16,5 +16,6 @@
 #define CELL_ICON 'I'
 #define CELL_WALL 'X'
 #define SAVE_FILE "map.dat"
+#define COVER_FILE "cover.txt"
 
 #endif // CONSTANTS_H
