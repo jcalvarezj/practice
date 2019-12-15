@@ -14,8 +14,8 @@ public:
 	void setPlayerCell(int posX, int posY);
 	void saveMap();
 	void loadMap();
-private:
 	MapCell cells[N][M];
+private:
 	MapCell * playerCell;
 };
 

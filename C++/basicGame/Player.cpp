@@ -8,9 +8,9 @@
 #include "Player.h"
 #include "Constants.h"
 
-Player::Player(std::string name): name(name) {
-	x = 0;
-	y = 0;
+Player::Player(std::string name, Map * map): name(name), map(map) {
+	x = M/2;
+	y = N/2;
 	alive = true;
 }
 
@@ -20,16 +20,20 @@ void Player::getUserInput() {
 
 	switch(toupper(userInput)) {
 		case LEFT:
-			x--;
+			if(Player::canMoveToCell(x-1,y))
+				x--;
 			break;
 		case RIGHT:
-			x++;
+			if(Player::canMoveToCell(x+1,y))
+				x++;
 			break;
 		case UP:
-			y--;
+			if(Player::canMoveToCell(x,y-1))
+				y--;
 			break;
 		case DOWN:
-			y++;
+			if(Player::canMoveToCell(x,y+1))
+				y++;
 			break;
 		case DIE:
 			alive = false;
@@ -49,4 +53,10 @@ int Player::getY() {
 
 bool Player::isAlive() {
 	return alive;
+}
+
+
+bool Player::canMoveToCell(int x, int y) {
+	return map->cells[y][x].getId() != CELL_WALL && x >= 0 && x < M && 
+		y >= 0 && y < N;
 }

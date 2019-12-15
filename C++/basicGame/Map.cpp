@@ -12,6 +12,16 @@
 
 Map::Map() {
 	playerCell = NULL;
+
+	for(int i = 0; i < M; i++) {
+		cells[0][i].setId(CELL_WALL);
+		cells[N-1][i].setId(CELL_WALL);
+	}
+
+	for(int i = 0; i < N; i++) {
+		cells[i][0].setId(CELL_WALL);
+		cells[i][M-1].setId(CELL_WALL);
+	}
 }
 
 void Map::drawMap() {
@@ -41,7 +51,8 @@ void Map::saveMap() {
 		}
 	}
 	else
-		std::cout << "Could not open map in " << SAVE_FILE << std::endl; 
+		std::cout << "Could not save map in " << SAVE_FILE 
+			". Probably an OS permission problem?" << std::endl; 
 	
 	saveFile.close();
 }
@@ -61,7 +72,8 @@ void Map::loadMap() {
 		}
 	}
 	else
-		std::cout << "Could not open map in " << SAVE_FILE << std::endl; 
-	
+		std::cout << "Could not open map in " << SAVE_FILE <<
+		   ". Probably an OS permission problem? Using default" << std::endl; 
+
 	inputFile.close();
 }

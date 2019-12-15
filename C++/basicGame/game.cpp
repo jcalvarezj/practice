@@ -9,8 +9,8 @@
 
 int main(int argc, char ** args) {
 	bool gameOver = false;
-	Player hero("Pepe");
 	Map map;
+	Player hero("Pepe",& map);
 
 	std::cout << "Loading map..." << std::endl; 
 
