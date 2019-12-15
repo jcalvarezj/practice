@@ -27,6 +27,7 @@ void loadCover() {
 
 int main(int argc, char ** args) {
 	bool gameOver = false;
+	bool victory = false;
 	Map map;
 	Player hero("Pepe",& map);
 
@@ -39,16 +40,20 @@ int main(int argc, char ** args) {
 	map.setPlayerCell(hero.getX(), hero.getY());
 	map.drawMap();
 
-	while(!gameOver) {
+	while(!gameOver && !victory) {
 		hero.getUserInput();
 		map.setPlayerCell(hero.getX(), hero.getY());
 		map.drawMap();
-		gameOver = !hero.isAlive();
+		victory = hero.hasTreasure();
+		if(!victory)
+			gameOver = !hero.isAlive();
 	}
 
-	std::cout << "-- GAME OVER --" << std::endl; 
+	if(gameOver)
+		std::cout << "-- GAME OVER --" << std::endl;
 
-	map.saveMap();
+	if(victory)
+		std::cout << "\n-- CONGRATULATIONS! YOU WIN! --" << std::endl;
 
 	return 0;
 }

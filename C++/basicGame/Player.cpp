@@ -9,9 +9,10 @@
 #include "Constants.h"
 
 Player::Player(std::string name, Map * map): name(name), map(map) {
-	x = M/2;
-	y = N/2;
+	x = 1;
+	y = 1;
 	alive = true;
+	treasureInHand = false;
 }
 
 void Player::getUserInput() {
@@ -40,7 +41,10 @@ void Player::getUserInput() {
 			break;
 	}
 
-	std::cout << "Hero at " << x << ", " << y << std::endl;
+	if(map->cells[y][x].getId() == '$')
+		treasureInHand = true;
+
+	std::cout << "Hero is now at " << x << ", " << y << std::endl;
 }
 
 int Player::getX() {
@@ -55,6 +59,9 @@ bool Player::isAlive() {
 	return alive;
 }
 
+bool Player::hasTreasure() {
+	return treasureInHand;
+}
 
 bool Player::canMoveToCell(int x, int y) {
 	return map->cells[y][x].getId() != CELL_WALL && x >= 0 && x < M && 

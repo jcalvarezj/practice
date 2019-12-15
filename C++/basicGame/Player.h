@@ -14,9 +14,10 @@ public:
 	int getX();
 	int getY();
 	bool isAlive();
+	bool hasTreasure();
 private:
 	int x,y;
-	bool alive;
+	bool alive, treasureInHand;
 	std::string name;
 	Map * map;
 	bool canMoveToCell(int x, int y);
