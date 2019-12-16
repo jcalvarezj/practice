@@ -1,5 +1,5 @@
 /*
- * // Description goes here
+ * Player class source
  *
  * @author J. Alvarez
  */
@@ -63,7 +63,3 @@ bool Player::hasTreasure() {
 	return treasureInHand;
 }
 
-bool Player::canMoveToCell(int x, int y) {
-	return map->cells[y][x].getId() != CELL_WALL && x >= 0 && x < M && 
-		y >= 0 && y < N;
-}

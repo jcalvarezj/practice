@@ -10,8 +10,9 @@
 #include "Player.h"
 #include "Map.h"
 
-void loadCover() {
-	std::ifstream cover(COVER_FILE);
+void loadCover(bool isStartCover) {
+	string fileName = isStartCover ? COVER_FILE : VICTORY_FILE;
+	std::ifstream cover(fileName);
 
 	if(cover.is_open()) {
 		std::string buffer = "";
@@ -20,9 +21,13 @@ void loadCover() {
 			std::cout << buffer << std::endl;
 	}
 	
-	std::cout << std::endl << "-- GAME START --" << std::endl;
-	std::cout << "Press ENTER to start. Move with WASD + ENTER. Die with X +"
-	   << " ENTER" << std::endl	<< std::endl;
+	if(isStartCover) {
+		std::cout << std::endl << "-- GAME START --" << std::endl;
+		std::cout << "Press ENTER to start. Move with WASD + ENTER. Die with X "
+		   << " + ENTER" << std::endl << std::endl;
+	}
+	else
+		std::cout << "\n-- CONGRATULATIONS! YOU WON! --" << std::endl;
 }
 
 int main(int argc, char ** args) {
@@ -30,6 +35,7 @@ int main(int argc, char ** args) {
 	bool victory = false;
 	Map map;
 	Player hero("Pepe",& map);
+	Enemy enemy(& map);
 
 	std::cout << "Loading map..." << std::endl; 
 
@@ -43,6 +49,7 @@ int main(int argc, char ** args) {
 	while(!gameOver && !victory) {
 		hero.getUserInput();
 		map.setPlayerCell(hero.getX(), hero.getY());
+		
 		map.drawMap();
 		victory = hero.hasTreasure();
 		if(!victory)
@@ -53,7 +60,7 @@ int main(int argc, char ** args) {
 		std::cout << "-- GAME OVER --" << std::endl;
 
 	if(victory)
-		std::cout << "\n-- CONGRATULATIONS! YOU WIN! --" << std::endl;
+		loadCover(false);
 
 	return 0;
 }
