@@ -1,5 +1,5 @@
 /*
- * Header file definition
+ * Constants header file definition
  */
 
 #ifndef CONSTANTS_H
@@ -12,18 +12,20 @@
 #define DIE 'X'
 #define N 15
 #define M 10
-#define N_ENEMIES 4
+#define N_ENEMIES 3
+#define N_LEVELS 3
 #define CELL_EMPTY ' '
 #define CELL_PLAYER 'I'
 #define CELL_WALL 'X'
 #define CELL_ENEMY 'O'
 #define CELL_DEATH '#'
-#define SAVE_FILE "map.dat"
+#define CELL_START '*'
+#define MAP_FILE "map.dat"
 #define COVER_FILE "cover.txt"
 #define VICTORY_FILE "victory.txt"
-#define ENEMY_UP 0
-#define ENEMY_DOWN 1
-#define ENEMY_LEFT 2
-#define ENEMY_RIGHT 3
+#define GAME_OVER_FILE "gameover.txt"
+
+enum ENEMY_MOVES {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT};
+enum COVERS {START, VICTORY, GAME_OVER};
 
 #endif // CONSTANTS_H

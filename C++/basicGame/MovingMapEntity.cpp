@@ -6,7 +6,8 @@
 #include "Map.h"
 #include "MovingMapEntity.h"
 
-MovingMapEntity::MovingMapEntity(Map * map): map(map){}
+MovingMapEntity::MovingMapEntity(int x, int y, Map * map): x(x), y(y), map(map){
+}
 
 int MovingMapEntity::getX() {
 	return x;

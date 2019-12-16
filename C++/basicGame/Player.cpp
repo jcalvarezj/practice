@@ -10,9 +10,8 @@
 #include "MovingMapEntity.h"
 #include "Constants.h"
 
-Player::Player(std::string name, Map * map): name(name), MovingMapEntity(map) {
-	x = 1;
-	y = 1;
+Player::Player(std::string name, int x, int y, Map * map): name(name),
+	MovingMapEntity(x, y, map) {
 	alive = true;
 	treasureInHand = false;
 }
@@ -51,6 +50,10 @@ void Player::getUserInput() {
 
 bool Player::isAlive() {
 	return alive;
+}
+
+void Player::die() {
+	alive = false;
 }
 
 bool Player::hasTreasure() {

@@ -10,7 +10,7 @@
 
 class MovingMapEntity {
 public:
-	MovingMapEntity(Map * map);
+	MovingMapEntity(int x, int y, Map * map);
 	int getX();
 	int getY();
 protected:

@@ -12,9 +12,10 @@
 
 class Player: public MovingMapEntity {
 public:
-	Player(std::string name, Map * map);
+	Player(std::string name, int x, int y, Map * map);
 	void getUserInput();
 	bool isAlive();
+	void die();
 	bool hasTreasure();
 private:
 	bool alive, treasureInHand;

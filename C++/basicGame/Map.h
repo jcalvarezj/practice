@@ -13,9 +13,11 @@ class Map {
 public:
 	Map(bool loadDefault);
 	void drawMap();
-	void setPlayerCell(int posX, int posY);
+	bool setPlayerCell(int posX, int posY);
+	bool setEnemyCell(int id, int x, int y);
 	void saveMap();
-	void loadMap();
+	void loadMap(int level, int & playerX, int & playerY,
+	   int (&enemiesX)[N_ENEMIES], int (&enemiesY)[N_ENEMIES]);
 	MapCell cells[N][M];
 private:
 	MapCell * playerCell;
