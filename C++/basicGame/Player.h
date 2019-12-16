@@ -5,6 +5,7 @@
  */
 #include <string>
 #include "Map.h"
+#include "MovingMapEntity.h"
 
 #ifndef PLAYER_H
 #define PLAYER_H

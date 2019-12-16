@@ -3,6 +3,7 @@
  *
  * @author J. Alvarez
  */
+#include "Map.h"
 
 #ifndef MOVING_MAP_ENTITY_H
 #define MOVING_MAP_ENTITY_H

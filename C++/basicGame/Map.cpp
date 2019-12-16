@@ -10,17 +10,22 @@
 #include "MapCell.h"
 #include "Constants.h"
 
-Map::Map() {
+Map::Map(bool loadDefault) {
 	playerCell = NULL;
 
-	for(int i = 0; i < M; i++) {
-		cells[0][i].setId(CELL_WALL);
-		cells[N-1][i].setId(CELL_WALL);
-	}
+	for(int i = 0; i < N_ENEMIES; i++)
+		enemyCells[i] = NULL;
 
-	for(int i = 0; i < N; i++) {
-		cells[i][0].setId(CELL_WALL);
-		cells[i][M-1].setId(CELL_WALL);
+	if(loadDefault) {
+		for(int i = 0; i < M; i++) {
+			cells[0][i].setId(CELL_WALL);
+			cells[N-1][i].setId(CELL_WALL);
+		}
+
+		for(int i = 0; i < N; i++) {
+			cells[i][0].setId(CELL_WALL);
+			cells[i][M-1].setId(CELL_WALL);
+		}
 	}
 }
 
@@ -32,12 +37,24 @@ void Map::drawMap() {
 	}
 }
 
-void Map::setPlayerCell(int posX, int posY) {
+void Map::setPlayerCell(int x, int y) {
 	if(playerCell)
 		playerCell->setId(CELL_EMPTY);
 
-	playerCell = &cells[posY][posX];
-	playerCell->setId(CELL_ICON);
+	playerCell = & cells[y][x];
+	playerCell->setId(CELL_PLAYER);
+}
+
+void setEnemyCell(int id, int x, int y) {
+	if(enemyCell[id])
+		enemyCell[id]->setId(CELL_EMPTY);
+
+	enemyCell[id] = & cells[y][x];
+
+	if(playerEnemyCollision(id))
+		enemyCell[id]->setId(CELL_DEATH);
+	else
+		enemyCell[id]->setId(CELL_ENEMY);
 }
 
 void Map::saveMap() {
@@ -58,6 +75,8 @@ void Map::saveMap() {
 }
 
 void Map::loadMap() {
+	std::cout << "Loading map..." << std::endl; 
+
 	std::ifstream inputFile(SAVE_FILE);
 
 	if(inputFile.is_open()) {
@@ -66,7 +85,7 @@ void Map::loadMap() {
 		
 		while(getline(inputFile, buffer)) {
 			for(int k = 0; k < buffer.length(); k++)
-				if(buffer[k] != CELL_ICON)
+				if(buffer[k] != CELL_PLAYER)
 					cells[currentLine][k].setId(buffer[k]);
 
 			currentLine++;
@@ -77,4 +96,8 @@ void Map::loadMap() {
 		   ". Probably an OS permission problem? Using default" << std::endl; 
 
 	inputFile.close();
+}
+
+bool Map::playerEnemyCollision(int id) {
+	return playerCell == enemyCells[id];
 }

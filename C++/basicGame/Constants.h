@@ -12,8 +12,9 @@
 #define DIE 'X'
 #define N 15
 #define M 10
+#define N_ENEMIES 4
 #define CELL_EMPTY ' '
-#define CELL_ICON 'I'
+#define CELL_PLAYER 'I'
 #define CELL_WALL 'X'
 #define CELL_ENEMY 'O'
 #define CELL_DEATH '#'

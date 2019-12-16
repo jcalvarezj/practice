@@ -3,6 +3,7 @@
  *
  * @author J. Alvarez
  */
+#include "Map.h"
 #include "MovingMapEntity.h"
 
 MovingMapEntity::MovingMapEntity(Map * map): map(map){}

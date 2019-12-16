@@ -8,11 +8,12 @@
 #include <string>
 #include "Constants.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "Map.h"
 
 void loadCover(bool isStartCover) {
-	string fileName = isStartCover ? COVER_FILE : VICTORY_FILE;
-	std::ifstream cover(fileName);
+	std::string fileName = isStartCover ? COVER_FILE : VICTORY_FILE;
+	std::ifstream cover(fileName.c_str());
 
 	if(cover.is_open()) {
 		std::string buffer = "";
@@ -33,15 +34,14 @@ void loadCover(bool isStartCover) {
 int main(int argc, char ** args) {
 	bool gameOver = false;
 	bool victory = false;
+
 	Map map;
-	Player hero("Pepe",& map);
-	Enemy enemy(& map);
-
-	std::cout << "Loading map..." << std::endl; 
-
 	map.loadMap();
 
-	loadCover();
+	Player hero("Pepe", & map);
+	Enemy enemy(0, & map);
+
+	loadCover(true);
 
 	map.setPlayerCell(hero.getX(), hero.getY());
 	map.drawMap();

@@ -1,5 +1,7 @@
 /*
- * Map header file definition
+ * Map class header file definition
+ *
+ * @author J. Alvarez
  */
 #include "MapCell.h"
 #include "Constants.h"
@@ -9,7 +11,7 @@
 
 class Map {
 public:
-	Map();
+	Map(bool loadDefault);
 	void drawMap();
 	void setPlayerCell(int posX, int posY);
 	void saveMap();
@@ -17,6 +19,8 @@ public:
 	MapCell cells[N][M];
 private:
 	MapCell * playerCell;
+	MapCell * enemyCells[N_ENEMIES];
+	bool playerEnemyCollision(int id);
 };
 
 #endif // MAP_H

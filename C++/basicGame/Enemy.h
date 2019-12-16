@@ -11,8 +11,10 @@
 
 class Enemy: public MovingMapEntity {
 public:
-	Enemy(Map * map);
+	Enemy(int id, Map * map);
+	int getId();
 private:
+	int id;
 	void move();
 };
 
