@@ -26,12 +26,17 @@ void loadCover(int coverId);
 void cleanEnemies(Enemy ** enemies);
 
 int main(int argc, char ** args) {
-	bool gameOver = false, victory = false, levelFinished = false;
-	int playerIX = 0, playerIY = 0, currentLevel = 0;
+	bool gameOver = false, victory = false, levelFinished = false,
+		 mapError = false;
+	int playerIX = 0, playerIY = 0, currentLevel = 1;
 	int enemiesIX[N_ENEMIES], enemiesIY[N_ENEMIES];
 
-	Map map(false);
-	map.loadMap(currentLevel, playerIX, playerIY, enemiesIX, enemiesIY);
+	Map map;
+	mapError = !map.loadMap(currentLevel, playerIX, playerIY, enemiesIX,
+			enemiesIY);
+
+	if(mapError)
+		return -1;
 
 	std::string name = "";
 	std::cout << "Enter your hero's name: ";
@@ -59,39 +64,54 @@ int main(int argc, char ** args) {
 
 	map.drawMap();
 
-	while(!gameOver && !victory) {
+	while(!gameOver && !victory && !mapError) {
 		hero.getUserInput();
 
 		if (map.setPlayerCell(hero.getX(), hero.getY()))
 			hero.die();
-		for(int i = 0; i < N_ENEMIES; i++) {
-			enemies[i]->move();
-			if(map.setEnemyCell(i, enemies[i]->getX(), enemies[i]->getY()))
-				hero.die();
-		}
+		else
+			for(int i = 0; i < N_ENEMIES; i++) {
+				enemies[i]->move();
+				if(map.setEnemyCell(i, enemies[i]->getX(), enemies[i]->getY()))
+					hero.die();
+			}
 		
 		map.drawMap();
 
 		levelFinished = hero.hasTreasure();
-		victory = levelFinished && currentLevel == N_LEVELS - 1;
+		victory = levelFinished && currentLevel == N_LEVELS;
 		
 		if(!victory)
 			gameOver = !hero.isAlive();
 		
-		if(levelFinished) {
+		if(levelFinished && !victory) {
 			loadCover(NEXT_LEVEL);
 			currentLevel++;
-			std::cout << "Next level:" << currentLevel+1 << std::endl;
+			std::cout << "Next level:" << currentLevel << std::endl;
 
 			levelFinished = false;
 			cleanEnemies(enemies);
+			map = Map();
 
-			enemies[0] = new RandomEnemy(0, enemiesIX[0], enemiesIY[0], & map);
-			enemies[1] = new RandomEnemy(1, enemiesIX[1], enemiesIY[1], & map);
-			enemies[2] = new RandomEnemy(2, enemiesIX[2], enemiesIY[2], & map);
+			mapError = !map.loadMap(currentLevel, playerIX, playerIY, enemiesIX,
+					enemiesIY);
 
-			map.loadMap(currentLevel, playerIX, playerIY, enemiesIX, enemiesIY);
-			hero = Player(name, playerIX, playerIY, & map);
+			if(!mapError) {
+				enemies[0] = new RandomEnemy(0, enemiesIX[0], enemiesIY[0], & map);
+				enemies[1] = new RandomEnemy(1, enemiesIX[1], enemiesIY[1], & map);
+				enemies[2] = new RandomEnemy(2, enemiesIX[2], enemiesIY[2], & map);
+
+				std::cout << "Enemies loaded at: - " << enemiesIY[0] << " - " << enemiesIX[0] << std::endl; 
+				std::cout << "Enemies loaded at: - " << enemiesIY[1] << " - " << enemiesIX[1] << std::endl; 
+				std::cout << "Enemies loaded at: - " << enemiesIY[2] << " - " << enemiesIX[2] << std::endl; 
+				hero = Player(name, playerIX, playerIY, & map);
+				map.setPlayerCell(hero.getX(), hero.getY());
+
+				for(int i = 0; i < N_ENEMIES; i++)
+					map.setEnemyCell(i, enemies[i]->getX(), enemies[i]->getY());
+
+				map.drawMap();
+			}
 		}
 	}
 
@@ -99,9 +119,12 @@ int main(int argc, char ** args) {
 		loadCover(GAME_OVER);
 		cleanEnemies(enemies);
 	}
-	else
+	else {
+		if(mapError)
+			return -1;
 		if(victory)
 			loadCover(VICTORY);
+	}
 
 	return 0;
 }

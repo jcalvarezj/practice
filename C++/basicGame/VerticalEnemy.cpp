@@ -17,7 +17,7 @@ VerticalEnemy::VerticalEnemy(int id, int x, int y, Map * map): Enemy(id, x, y,
 }
 
 void VerticalEnemy::move() {
-	if(verticalValue == ENEMY_VERTICAL_MOVES - 1)
+	if(verticalValue == ENEMY_VERTICAL_MOVES)
 		verticalDirection = -1;
 	if(verticalValue == 0)
 		verticalDirection = 1;

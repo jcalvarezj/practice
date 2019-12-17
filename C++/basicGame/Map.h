@@ -12,10 +12,9 @@
 class Map {
 public:
 	/*
-	 * Map constructor. Creates a new map and loads its cells from a file if
-	 * loadDefault parameter is true
+	 * Map constructor
 	 */
-	Map(bool loadDefault);
+	Map();
 
 	/*
 	 * Draws the map on the CLI
@@ -50,8 +49,9 @@ public:
 	 * @param playerY y position of the game's player
 	 * @param enemiesX x positions of the game's enemies
 	 * @param enemiesY y positions of the game's enemies
+	 * @returns true if load is correct, false otherwise
 	 */
-	void loadMap(int level, int & playerX, int & playerY,
+	bool loadMap(int level, int & playerX, int & playerY,
 	   int (&enemiesX)[N_ENEMIES], int (&enemiesY)[N_ENEMIES]);
 	MapCell cells[N][M];
 private:

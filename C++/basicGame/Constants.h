@@ -21,7 +21,7 @@
 #define CELL_DEATH '#'
 #define CELL_START '*'
 #define CELL_TREASURE '$'
-#define MAP_FILE "map.dat"
+#define MAP_FILE "map"
 #define COVER_FILE "cover.txt"
 #define NEXT_LEVEL_FILE "nextlevel.txt"
 #define VICTORY_FILE "victory.txt"

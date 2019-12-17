@@ -6,27 +6,16 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 #include "Map.h"
 #include "MapCell.h"
 #include "Constants.h"
 
-Map::Map(bool loadDefault) {
+Map::Map() {
 	playerCell = NULL;
 
 	for(int i = 0; i < N_ENEMIES; i++)
 		enemyCells[i] = NULL;
-
-	if(loadDefault) {
-		for(int i = 0; i < M; i++) {
-			cells[0][i].setId(CELL_WALL);
-			cells[N-1][i].setId(CELL_WALL);
-		}
-
-		for(int i = 0; i < N; i++) {
-			cells[i][0].setId(CELL_WALL);
-			cells[i][M-1].setId(CELL_WALL);
-		}
-	}
 }
 
 void Map::drawMap() {
@@ -75,11 +64,17 @@ bool Map::setEnemyCell(int id, int x, int y) {
 	return death;
 }
 
-void Map::loadMap(int level, int & playerX, int & playerY,
+bool Map::loadMap(int level, int & playerX, int & playerY,
 	   int (&enemiesX)[N_ENEMIES], int (&enemiesY)[N_ENEMIES]) {
-	std::cout << "Loading map..." << std::endl; 
+	bool loadOk = false;
 
-	std::ifstream inputFile(MAP_FILE);
+	std::stringstream ss;
+	ss << MAP_FILE << level << ".dat";
+	std::string fileName = ss.str();
+
+	std::cout << "Loading map... " << fileName << std::endl;
+
+	std::ifstream inputFile(fileName.c_str());
 
 	if(inputFile.is_open()) {
 		std::string buffer = "";
@@ -104,12 +99,15 @@ void Map::loadMap(int level, int & playerX, int & playerY,
 
 			currentLine++;
 		}
+
+		loadOk = true;
 	}
 	else
-		std::cout << "Could not open map in " << MAP_FILE <<
-		   ". Probably an OS permission problem? Using default" << std::endl; 
+		std::cout << "Could not open map file " << fileName << std::endl; 
 
 	inputFile.close();
+
+	return loadOk;
 }
 
 bool Map::playerEnemyCollision(int id) {

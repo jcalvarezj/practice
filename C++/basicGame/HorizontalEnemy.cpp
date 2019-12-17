@@ -17,7 +17,7 @@ HorizontalEnemy::HorizontalEnemy(int id, int x, int y, Map * map): Enemy(id, x, 
 }
 
 void HorizontalEnemy::move() {
-	if(horizontalValue == ENEMY_VERTICAL_MOVES - 1)
+	if(horizontalValue == ENEMY_HORIZONTAL_MOVES)
 		horizontalDirection = -1;
 	if(horizontalValue == 0)
 		horizontalDirection = 1;
