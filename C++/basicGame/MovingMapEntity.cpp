@@ -17,7 +17,11 @@ int MovingMapEntity::getY() {
 	return y;
 }
 
-bool MovingMapEntity::canMoveToCell(int x, int y) {
-	return map->cells[y][x].getId() != CELL_WALL && x >= 0 && x < M && 
-		y >= 0 && y < N;
+bool MovingMapEntity::canMoveToCell(int x, int y, bool isPlayer) {
+	char cellId = map->cells[y][x].getId();
+//	if(isPlayer)
+//		return cellId != CELL_WALL && x >= 0 && x < M && y >= 0 && y < N;
+//	else
+		return cellId != CELL_WALL && cellId != CELL_TREASURE && x >= 0 && x < M
+			&& y >= 0 && y < N;
 }

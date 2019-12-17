@@ -20,12 +20,16 @@
 #define CELL_ENEMY 'O'
 #define CELL_DEATH '#'
 #define CELL_START '*'
+#define CELL_TREASURE '$'
 #define MAP_FILE "map.dat"
 #define COVER_FILE "cover.txt"
+#define NEXT_LEVEL_FILE "nextlevel.txt"
 #define VICTORY_FILE "victory.txt"
 #define GAME_OVER_FILE "gameover.txt"
+#define ENEMY_VERTICAL_MOVES 4
+#define ENEMY_HORIZONTAL_MOVES 4
 
 enum ENEMY_MOVES {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT};
-enum COVERS {START, VICTORY, GAME_OVER};
+enum COVERS {START, NEXT_LEVEL, VICTORY, GAME_OVER};
 
 #endif // CONSTANTS_H

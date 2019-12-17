@@ -9,6 +9,9 @@
 #include "Constants.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "VerticalEnemy.h"
+#include "HorizontalEnemy.h"
+#include "RandomEnemy.h"
 #include "Map.h"
 
 /*
@@ -17,50 +20,85 @@
  */
 void loadCover(int coverId);
 
+/*
+ * Frees memory from unused enemies
+ */
+void cleanEnemies(Enemy ** enemies);
+
 int main(int argc, char ** args) {
-	bool gameOver = false, victory = false;
+	bool gameOver = false, victory = false, levelFinished = false;
 	int playerIX = 0, playerIY = 0, currentLevel = 0;
 	int enemiesIX[N_ENEMIES], enemiesIY[N_ENEMIES];
 
 	Map map(false);
 	map.loadMap(currentLevel, playerIX, playerIY, enemiesIX, enemiesIY);
 
-	Player hero("Pepe",playerIX, playerIY, & map);
+	std::string name = "";
+	std::cout << "Enter your hero's name: ";
+	std::cin >> name;
+	std::cout << "\n\t\tGo for the treasure (" << CELL_TREASURE << "), " <<
+		name << "!\n\t\tRemember to avoid the enemy! (" << CELL_ENEMY << ")"
+		<< std::endl;
 
-	Enemy enemies[] = {
-		Enemy(0, enemiesIX[0], enemiesIY[0], & map),
-		Enemy(1, enemiesIX[1], enemiesIY[1], & map),
-		Enemy(2, enemiesIX[2], enemiesIY[2], & map),
+
+	Player hero(name, playerIX, playerIY, & map);
+
+	Enemy * enemies[] = {
+		new VerticalEnemy(0, enemiesIX[0], enemiesIY[0], & map),
+		new HorizontalEnemy(1, enemiesIX[1], enemiesIY[1], & map),
+		new RandomEnemy(2, enemiesIX[2], enemiesIY[2], & map)
 	};
 
 	loadCover(START);
+	std::cout << "Next level:" << currentLevel+1 << std::endl;
 
 	map.setPlayerCell(hero.getX(), hero.getY());
 
 	for(int i = 0; i < N_ENEMIES; i++)
-		map.setEnemyCell(i, enemies[i].getX(), enemies[i].getY());
+		map.setEnemyCell(i, enemies[i]->getX(), enemies[i]->getY());
 
 	map.drawMap();
 
 	while(!gameOver && !victory) {
 		hero.getUserInput();
+
 		if (map.setPlayerCell(hero.getX(), hero.getY()))
 			hero.die();
 		for(int i = 0; i < N_ENEMIES; i++) {
-			enemies[i].move();
-			if(map.setEnemyCell(i, enemies[i].getX(), enemies[i].getY()))
+			enemies[i]->move();
+			if(map.setEnemyCell(i, enemies[i]->getX(), enemies[i]->getY()))
 				hero.die();
 		}
 		
 		map.drawMap();
-		victory = hero.hasTreasure();
 
+		levelFinished = hero.hasTreasure();
+		victory = levelFinished && currentLevel == N_LEVELS - 1;
+		
 		if(!victory)
 			gameOver = !hero.isAlive();
+		
+		if(levelFinished) {
+			loadCover(NEXT_LEVEL);
+			currentLevel++;
+			std::cout << "Next level:" << currentLevel+1 << std::endl;
+
+			levelFinished = false;
+			cleanEnemies(enemies);
+
+			enemies[0] = new RandomEnemy(0, enemiesIX[0], enemiesIY[0], & map);
+			enemies[1] = new RandomEnemy(1, enemiesIX[1], enemiesIY[1], & map);
+			enemies[2] = new RandomEnemy(2, enemiesIX[2], enemiesIY[2], & map);
+
+			map.loadMap(currentLevel, playerIX, playerIY, enemiesIX, enemiesIY);
+			hero = Player(name, playerIX, playerIY, & map);
+		}
 	}
 
-	if(gameOver)
+	if(gameOver) {
 		loadCover(GAME_OVER);
+		cleanEnemies(enemies);
+	}
 	else
 		if(victory)
 			loadCover(VICTORY);
@@ -76,6 +114,10 @@ void loadCover(int coverId) {
 			fileName = COVER_FILE;
 			message = std::string("\n-- GAME START --\nPress ENTER to start.")
 				+" Move with WASD + ENTER. Die with X + ENTER\n\n";
+			break;
+		case NEXT_LEVEL:
+			fileName = NEXT_LEVEL_FILE;
+			message = "\n-- LEVEL COMPLETE! ADVANCING TO NEXT LEVEL! --";
 			break;
 		case VICTORY:
 			fileName = VICTORY_FILE;
@@ -98,3 +140,7 @@ void loadCover(int coverId) {
 	std::cout << message << std::endl;
 }
 
+void cleanEnemies(Enemy ** enemies) {
+	for(int i=0; i<N_ENEMIES; i++)
+		delete enemies[i];
+}

@@ -22,19 +22,19 @@ void Player::getUserInput() {
 
 	switch(toupper(userInput)) {
 		case LEFT:
-			if(MovingMapEntity::canMoveToCell(x-1,y))
+			if(MovingMapEntity::canMoveToCell(x-1, y, true))
 				x--;
 			break;
 		case RIGHT:
-			if(MovingMapEntity::canMoveToCell(x+1,y))
+			if(MovingMapEntity::canMoveToCell(x+1, y, true))
 				x++;
 			break;
 		case UP:
-			if(MovingMapEntity::canMoveToCell(x,y-1))
+			if(MovingMapEntity::canMoveToCell(x, y-1, true))
 				y--;
 			break;
 		case DOWN:
-			if(MovingMapEntity::canMoveToCell(x,y+1))
+			if(MovingMapEntity::canMoveToCell(x, y+1, true))
 				y++;
 			break;
 		case DIE:
@@ -42,10 +42,8 @@ void Player::getUserInput() {
 			break;
 	}
 
-	if(map->cells[y][x].getId() == '$')
+	if(map->cells[y][x].getId() == CELL_TREASURE)
 		treasureInHand = true;
-
-	std::cout << "Hero is now at " << x << ", " << y << std::endl;
 }
 
 bool Player::isAlive() {
