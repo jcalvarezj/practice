@@ -1,5 +1,7 @@
 /*
  * Source file of Map Cell class
+ *
+ * @author J. Alvarez
  */
 
 #include "MapCell.h"

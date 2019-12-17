@@ -11,7 +11,15 @@
 
 class RandomEnemy: public Enemy {
 public:
+	/*
+	 * RandomEnemy constructor
+	 * @see Enemy
+	 */
 	RandomEnemy(int id, int x, int y, Map * map);
+
+	/*
+	 * @see Enemy
+	 */
 	void move();
 };
 

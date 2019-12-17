@@ -1,5 +1,7 @@
 /*
  * Constants header file definition
+ *
+ * @author J. Alvarez
  */
 
 #ifndef CONSTANTS_H
@@ -10,8 +12,8 @@
 #define LEFT 'A'
 #define RIGHT 'D'
 #define DIE 'X'
-#define N 15
-#define M 10
+#define N 15 //ROWS
+#define M 10 //COLS
 #define N_ENEMIES 3
 #define N_LEVELS 3
 #define CELL_EMPTY ' '

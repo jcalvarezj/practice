@@ -13,9 +13,6 @@
 RandomEnemy::RandomEnemy(int id, int x, int y, Map * map): Enemy(id, x, y, 
 		map) {}
 
-/*
- * Moves the enemy to a new position (if it's a valid cell)
- */
 void RandomEnemy::move() {
 	int direction = rand() % 4;
 

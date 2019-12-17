@@ -1,5 +1,7 @@
 /*
  * Map Cell header file definition
+ *
+ * @author J. Alvarez
  */
 
 #ifndef MAP_CELL_H
