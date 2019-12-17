@@ -1,5 +1,7 @@
 /*
  * Header file definition
+ *
+ * @author J. Alvarez
  */
 
 #ifndef <HEADER_NAME_HERE_H>
