@@ -101,9 +101,6 @@ int main(int argc, char ** args) {
 				enemies[1] = new RandomEnemy(1, enemiesIX[1], enemiesIY[1], & map);
 				enemies[2] = new RandomEnemy(2, enemiesIX[2], enemiesIY[2], & map);
 
-				std::cout << "Enemies loaded at: - " << enemiesIY[0] << " - " << enemiesIX[0] << std::endl; 
-				std::cout << "Enemies loaded at: - " << enemiesIY[1] << " - " << enemiesIX[1] << std::endl; 
-				std::cout << "Enemies loaded at: - " << enemiesIY[2] << " - " << enemiesIX[2] << std::endl; 
 				hero = Player(name, playerIX, playerIY, & map);
 				map.setPlayerCell(hero.getX(), hero.getY());
 
