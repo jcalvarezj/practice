@@ -38,6 +38,13 @@ public:
 		std::cout << info << std::endl;
 	}
 
+	void printNodeComplete() {
+		std::string leftInfo = left ? left->getInfo() : "NULL";
+		std::string rightInfo = right ? right->getInfo() : "NULL";
+		std::cout << info << "... children:\n\t" << leftInfo << " - " <<
+			rightInfo << std::endl;
+	}
+
 private:
 	Node * left;
 	Node * right;
@@ -105,10 +112,36 @@ public:
 		if(subTree) {
 			cleanSubTree(subTree->getLeft());
 			cleanSubTree(subTree->getRight());
-			std::cout << "Deleting " << subTree->getInfo() << std::endl; 
 			delete subTree;
 		}
 	}
+
+	Node * search(std::string info) {
+		Node * found = NULL;
+
+		if(root) {
+				found = searchSubTree(info, root);
+		}
+
+		return found;
+	}
+
+	Node * searchSubTree(std::string info, Node * subTree) {
+		Node * found = NULL;
+
+		if(subTree) {
+			if(subTree->getInfo().compare(info) == 0)
+				found = subTree;
+			else {
+				found = searchSubTree(info, subTree->getLeft());
+				if(!found)
+					found = searchSubTree(info, subTree->getRight());
+			}
+		}
+
+		return found;
+	}
+
 private:
 	Node * root;
 };
@@ -125,6 +158,18 @@ int main(int argc, char ** args) {
 	bt->addNode(new Node("cello"));
 
 	bt->printTree();
+
+	std::string searchInfo = "pepe";
+	std::cout << "Searching for... " << searchInfo << std::endl; 
+	Node * search = bt->search(searchInfo);
+
+	if(!search)
+		std::cout << "Node not found :(" << std::endl;
+	else {
+		std::cout << "Found it :)" << std::endl; 
+		search->printNodeComplete();
+	}
+
 	bt->cleanTree();
 	delete bt;
 
