@@ -15,7 +15,6 @@ import pkgVista.PanelJuego;
  * cargar respectivamente los archivos de texto.
  * @author Juan Camilo Alvarez, Andres Roberto Alvarez
  */
-//TODO Modificar segun el formato del proyecto, etc...
 public class ManejadorArchivos {
 
     private PanelJuego panel;
@@ -71,7 +70,6 @@ public class ManejadorArchivos {
                             permisos[k] = partido[k+3].equals("1");
 
                         configurado.agregarAeropuerto(new Aeropuerto(nombre, configurado.getEspacio().getMapa()[0][i][j].getPosicion(), permisos, panel),juego.getEspacio().getMapa()[0][i][j]);
-                        //System.out.println("el juego tiene los aeropuertos:"+juego.getAeropuertos());
                     } catch (NumberFormatException numberFormatException) {
                         throw new ArchivoNoValidoExcepion("valor no numérico en alguno de los parámetros de posición");
                     } catch (ArrayIndexOutOfBoundsException ae) {
@@ -89,12 +87,6 @@ public class ManejadorArchivos {
         return configurado;
     }
     
-    /**
-     * catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo en la ruta especificada", "Archivo no encontrado!", JOptionPane.ERROR_MESSAGE);
-        }
-     */
-
     public PanelJuego getPanel() {
         return panel;
     }
@@ -103,26 +95,4 @@ public class ManejadorArchivos {
         this.panel = panel;
     }
  
-    /**
-     * Metodo que permite cargar la cadena de caracteres de un archivo de texto
-     * @param ruta La ruta del archivo especificado
-     * @return Cadena de caracteres de lo hallado en la lectura del archivo de texto
-     * @throws FileNotFoundException Si no se ha hallado el archivo especificado
-     
-     public String cargar(String ruta){
-        File f = new File(ruta);
-        String linea = "";
-        try {
-                Scanner s = new Scanner(f);
-                while(s.hasNextLine())
-                    linea+=s.nextLine()+"\n";
-                if(!linea.equals(""))
-                    linea=linea.substring(0, linea.length()-1);
-                else
-                    JOptionPane.showMessageDialog(null, "Archivo de texto vacío!!!", "OJO", JOptionPane.INFORMATION_MESSAGE);
-        } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo en la ruta especificada", "Archivo no encontrado!", JOptionPane.ERROR_MESSAGE);
-        }
-        return linea;
-    }*/
 }

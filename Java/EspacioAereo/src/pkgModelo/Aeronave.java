@@ -87,12 +87,9 @@ public abstract class Aeronave implements Runnable, Comparable {
         destruir = false;
         detenerHilo = false;
         
-        //casillaEspacio = Espacio.buscarCasillaPosicion(posicionInicial, panel.getMapa().getMapa());
         this.casillaEspacio = casillaEspacio;
         this.casillaEspacio.setOcupado(id);
-        //System.out.println("Las llegadas...");
         llegadas = posiblesLlegadas();
-        //System.out.println("son.."+llegadas);
         
         ruta = new Stack<>();
     }
@@ -119,14 +116,8 @@ public abstract class Aeronave implements Runnable, Comparable {
      * Genera la ruta a partir del algoritmo inteligente.
      */
     protected Stack generarRuta(){
-        //Nodo n = nodoRutaAlternativo(); // OJO, probar tambien con "nodoRuta" y "nodoRutaOtro" 
         Nodo n = nodoRutaOtro(); // OJO, probar tambien con "nodoRuta" y "nodoRutaOtro" 
-        //Nodo n = nodoRuta(); // OJO, probar tambien con "nodoRuta" y "nodoRutaOtro" 
-        //System.out.println("Parece que hay ruta! "+n);
-        //ruta.push(n);
         while(n != null){
-          
-        //    System.out.println("Ahora se agrega "+n);
             ruta.push(n);
             n = n.getPadre();
         }
@@ -136,12 +127,10 @@ public abstract class Aeronave implements Runnable, Comparable {
     protected Nodo nodoRuta(){
         Nodo inicio = casillaEspacio;
         
-        //LinkedList<Nodo> abierta = new LinkedList<Nodo>(), cerrada = new LinkedList<>();
         HeapNodo abierta = new HeapNodo(), cerrada = new HeapNodo();
         abierta.enqueue(inicio); 
         
         while(!abierta.getLista().getFirst().isLlegadaAvion(this)){ //Suponiendo que abierta está en orden asc.
-            //Nodo actual = abierta.getLista().remove();
             Nodo actual = abierta.dequeueMinimo(this);
             System.out.println("Nodo actual: "+actual);
             cerrada.enqueue(actual);
@@ -177,24 +166,16 @@ public abstract class Aeronave implements Runnable, Comparable {
     protected Nodo nodoRutaOtro(){
         Nodo inicio = casillaEspacio;
         
-        //LinkedList<Nodo> abierta = new LinkedList<Nodo>(), cerrada = new LinkedList<>();
         HeapNodo abierta = new HeapNodo(), cerrada = new HeapNodo();
         abierta.enqueue(inicio); 
-        //abierta.agregar(inicio, this); 
         Nodo meta = null;
         do{
-            //Nodo actual = abierta.getLista().remove();
             Nodo actual = abierta.dequeueMinimo(this);
             cerrada.enqueue(actual);
             if(actual.isLlegadaAvion(this))
                 meta = actual;
             else{
                 LinkedList<Nodo> vecinos = actual.getSucesores(cerrada);
-                //System.out.println("LOS SUCESORES!!!!!!!!!!!!!!\n"+vecinos);
-                //for (Nodo nodo : vecinos) {
-                //    nodo.setG((float) actual.getG() + Nodo.costoSucesor(i));
-                //    nodo.actualizarHeuristicaOptima(nodo, llegadas);
-                //}
                 
                 for (int i=0; i<vecinos.size(); i++) {
                     Nodo vecino = vecinos.get(i);
@@ -212,12 +193,10 @@ public abstract class Aeronave implements Runnable, Comparable {
                             if(vecino.getFAeronave(this.getId()) < abierta.getLista().get(posicionNodoAbierta).getFAeronave(this.getId()))
                             {//Remueva vecino de abierta porque nuevo camino es mejor
                                 cerrada.enqueue(vecino);
-                                //cerrada.agregar(abierta.getLista().remove(posicionNodoAbierta));                        
                                 abierta.getLista().remove(posicionNodoAbierta);  }
                         if(posicionNodoCerrada >= 0)
                             if(vecino.getFAeronave(this.getId()) < cerrada.getLista().get(posicionNodoCerrada).getFAeronave(this.getId()))
                                 abierta.enqueue(cerrada.getLista().remove(posicionNodoCerrada));
-                                //abierta.agregar(cerrada.getLista().remove(posicionNodoCerrada));
                         if(posicionNodoCerrada == -1 && posicionNodoAbierta == -1)
                         {
                             abierta.enqueue(vecino);
@@ -244,11 +223,8 @@ public abstract class Aeronave implements Runnable, Comparable {
             System.out.println("En cerrada hay: "+cerrada);
             
             Nodo actual = abierta.dequeueMinimo(this); //De menor valor f, orden asc de f
-            //Nodo actual = abierta.getLista().remove(); //De menor valor f, orden asc de f
-            //Nodo actual = abierta.getLista().getFirst(); //De menor valor f, orden asc de f
             
             LinkedList<Nodo> vecinos = actual.getSucesores(cerrada,id);
-            //LinkedList<Nodo> vecinos = actual.getSucesores(abierta,id);
             
             System.out.println("Los vecinos del actual "+actual+" son "+vecinos);
             
@@ -291,40 +267,6 @@ public abstract class Aeronave implements Runnable, Comparable {
         System.out.println("Lo logro??? "+(meta == null));
         return meta;
     }
-    
-    //Otro boceto de algoritmo
-//    protected Nodo nodoRuta1(){
-//        Nodo inicio = casillaEspacio;
-//        LinkedList<Nodo> abierta = new LinkedList<>(), cerrada = new LinkedList<>();
-//        abierta.add(inicio);
-//        while(!abierta.isEmpty()){            
-//            //Escoger nodo con el menor valor f, se puede optimizar
-//            int candidato = 0;
-//            for (int i = 1; i < abierta.size(); i++)
-//                if(abierta.get(i).getF() < abierta.get(candidato).getF())
-//                    candidato = i;
-//            
-//            Nodo actual = abierta.get(candidato);
-//            
-//            if(actual.isLlegadaAvion(this))
-//                return actual;
-//            
-//            LinkedList<Nodo> sucesores = actual.getSucesores();
-//            
-//            for (int i=0; i<sucesores.size(); i++) {
-//                Nodo sucesor = sucesores.get(i);
-//                sucesor.setG(actual.getG()+Nodo.costoSucesor(i));
-//                
-//                boolean esta = false;
-//                int j = 0;
-//                while(j < abierta.size() && !esta)
-//                    if(abierta.get(i).equals(sucesor))
-//                        esta = true;
-//                
-//            }
-//        }
-//        return llegada;
-//    }
     
     /**
      * @return the altura
@@ -812,44 +754,15 @@ public abstract class Aeronave implements Runnable, Comparable {
     }
     
     private LinkedList<Nodo> posiblesLlegadas(){
-        //System.out.println("VAMO!!! A CALCULAR LLEGADA");
         Juego j = panel.getJuego();
-        //System.out.println("DEBEN HABER "+j.getLlegadas().size());
-        //System.out.println("EL AVION QUIERE===== "+ordenAterrizaje);
         LinkedList<Nodo> nodoes = new LinkedList<>();
+
         for (Nodo n : j.getLlegadas())
             if(n.isLlegadaAvion(this))
                 nodoes.add(n);        
-     //       System.out.println("El nodo "+n+" es acaso llegada para este??? "+n.isLlegadaAvion(this)+" porque...");
-       //     System.out.println("tiene aeropuerto=? "+n.getAeropuerto()!=null);
-         //   System.out.println("es acaso heli? "+(this instanceof Helicoptero)+" o carga? "+(this instanceof Carga)+" o Militar? "+(this instanceof Militar)+" o aeronave? "+(this instanceof Aeroplano));
-           // System.out.println("Porque los permisos del nodo son: "+n.getAeropuerto().getAterrizajesActivos()[0]+","+n.getAeropuerto().getAterrizajesActivos()[1]+","+n.getAeropuerto().getAterrizajesActivos()[2]+","+n.getAeropuerto().getAterrizajesActivos()[3]+","+n.getAeropuerto().getAterrizajesActivos()[4]);
-        
         
         return nodoes;
     }
-//    private LinkedList<Nodo> posiblesLlegadas(){
-//        Nodo[][][] e = panel.getMapa().getMapa();
-//        LinkedList<Nodo> nodoes = new LinkedList<>();
-//        for (int k = 0; k < e.length; k++) 
-//            for (int i = 0; i < e[0].length; i++) 
-//                for (int j = 0; j < e[0][0].length; j++)
-//                    if((e[k][i][j].getAeropuerto() != null) && e[k][i][j].isLlegadaAvion(this))
-//                        nodoes.add(e[k][i][j]);
-//        return nodoes;
-//    }
-    
-//    private LinkedList<Nodo> posiblesLlegadas(){
-//        Nodo[][][] e = panel.getMapa().getMapa();
-//        LinkedList<Nodo> nodoes = new LinkedList<>();
-//        for (int i = 0; i < e[0].length; i++) {
-//            for (int j = 0; j < e[0][0].length; j++) {
-//                if((e[0][i][j].getAeropuerto() != null) && e[0][i][j].isLlegadaAvion(this))
-//                    nodoes.add(e[0][i][j]);
-//            }            
-//        }
-//        return nodoes;
-//    }
 
     /**
      * @return the ordenAterrizaje

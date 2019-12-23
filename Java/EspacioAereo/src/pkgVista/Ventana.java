@@ -44,12 +44,10 @@ public class Ventana extends javax.swing.JFrame {
         editando = false;
         
         panel = new PanelJuego(this);
-        //panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setTitle("***** Juego Espacio Aereo *****");
-        //setSize(1220,685);
         setSize(1285,685);
         
         ButtonGroup grupo = new ButtonGroup();
@@ -384,18 +382,9 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDefinirLineaLanzamientoActionPerformed
 
     private void btnIniciarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJuegoActionPerformed
-        // TODO add your handling code here:
         barraTiempo.setEnabled(false);
-        //radioAutom.setEnabled(false);
-        //radioManual.setEnabled(false);
         btnCrearMapa.setEnabled(false);
         btnCargarMapa.setEnabled(false);
-        //panel.getJuego().setModo(radioAutom.isSelected());
-//        try {
-//            Thread.sleep(2500);
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-//        }
         seleccionarModoJuego();
         Thread j = new Thread(panel.getJuego());
         j.start();

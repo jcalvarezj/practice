@@ -144,40 +144,6 @@ public class Nodo implements Comparable, Cloneable {
                 + i.getAltura() - f.getAltura());
     }
     
-/*7    
-    private void ponerNodos(){
-        
-        LinkedList<Nodo> a = new LinkedList<>();
-        for (int l = 1; l < 19; l++) 
-            a.add(new Nodo(l, altura, espacio, i, j, k));
-                
-        norte = a.get(0);
-        norEste = a.get(1);
-        norOeste = a.get(2);
-        oeste = a.get(3);
-        sur = a.get(4);
-        surEste = a.get(5);
-        surOeste = a.get(6);
-        este = a.get(7);
-        arriba = a.get(8);
-        abajo = a.get(9);
-        arribaEste = a.get(10);
-        arribaNorte = a.get(11);
-        arribaOeste = a.get(12);
-        arribaSur = a.get(13);
-        abajoEste = a.get(14);
-        abajoNorte = a.get(15);
-        abajoOeste = a.get(16);
-        abajoSur = a.get(17);
-    }
-   */
-    
-    /*
-     * public int pasosManhattan(Nodo objetivo){
-        return Math.abs(posicion.x - objetivo.getPosicion().x) + Math.abs(posicion.y - objetivo.getPosicion().y);
-    }
-     */
-    
     /**
      * Actualiza el valor de evaluacion 'f' por medio de la mínima heurística
      * PRE! inicio != null && otros!=null && otros.size()>0
@@ -186,10 +152,7 @@ public class Nodo implements Comparable, Cloneable {
      * calculado) y de la función de evaluación
      * @param llegadas 
      */
-    //public void actualizarHeuristicaOptima(LinkedList<Nodo> otros){
     public void actualizarHeuristicaOptima(Integer idAvion, LinkedList<Nodo> llegadas){ 
-        //if(getHAeronave(idAvion) == 0)
-        //{
             LinkedList<Float> heuristicas = new LinkedList<>();
             int menor = 0;
             for (Nodo nodo : llegadas) {
@@ -206,9 +169,6 @@ public class Nodo implements Comparable, Cloneable {
             setHAeronave(idAvion, heuristicas.get(menor));
             
             setFAeronave(idAvion, getGAeronave(idAvion) + getHAeronave(idAvion));
-        //}
-        //else
-          //  setFAeronave(idAvion, getGAeronave(idAvion) + getHAeronave(idAvion));
     }
     
     public static float pasosDiagonales(Nodo i, Nodo f){
@@ -228,18 +188,9 @@ public class Nodo implements Comparable, Cloneable {
         return pasosManhattan(i,f) - 2*pasosDiagonales(i,f);
     }
     
-//    public void actualizarHeuristica(Nodo llegada){
-//        diccionario.get(llegada.getId())[2] = (float) (pasosOrtogonales(this, llegada) + 103.923*pasosDiagonales(this, llegada));
-//        diccionario.get(llegada.getId())[1] = diccionario.get(llegada.getId())[0] + diccionario.get(llegada.getId())[2];
-//    }
-    
     public float calcularHeuristica(Nodo llegada){
         return (float) (pasosOrtogonales(this, llegada) + 103.923*pasosDiagonales(this, llegada));
     }
-    
-    //public int costoAdyacentesBasico(){
-      //  return 40;
-    //}
     
     public static float costoSucesor(int cual){
         float costo = 0;
@@ -271,7 +222,6 @@ public class Nodo implements Comparable, Cloneable {
     
     public float getFAeronave(int id){
         if(diccionario.containsKey(id)) {
-            //System.out.println("Es el id null?: "+diccionario.get(id)[0]+" "+diccionario.get(id)[1]+ " "+ diccionario.get(id)[2]);
             return diccionario.get(id)[1];
         }
         return 0;
@@ -770,156 +720,8 @@ public class Nodo implements Comparable, Cloneable {
         else
             l.add(null);
         
-        /*        
-        if(!lista.contains(norEste) && norEste.getOcupado() < 0)
-            l.add(norEste);
-        else
-            l.add(null);
-        if(!lista.contains(norOeste) && norOeste.getOcupado() < 0)
-            l.add(norOeste);
-        else
-            l.add(null);
-        if(!lista.contains(oeste)  && norOeste.getOcupado() == 0)
-            l.add(oeste);
-        else
-            l.add(null);
-        if(!lista.contains(sur) && sur.getOcupado() == 0)
-            l.add(sur);
-        else
-            l.add(null);
-        if(!lista.contains(surEste) && surEste.getOcupado() == 0)
-            l.add(surEste);
-        else
-            l.add(null);
-        if(!lista.contains(surOeste) && surOeste.getOcupado() == 0)
-            l.add(surOeste);
-        else
-            l.add(null);
-        if(!lista.contains(este) && este.getOcupado() == 0)
-            l.add(este);
-        else
-            l.add(null);
-        if(!lista.contains(arriba) && arriba.getOcupado() == 0)
-            l.add(arriba);
-        else
-            l.add(null);
-        if(!lista.contains(abajo) && abajo.getOcupado() == 0)
-            l.add(abajo);
-        else
-            l.add(null);
-        if(!lista.contains(arribaEste) && arribaEste.getOcupado() == 0)
-            l.add(arribaEste);
-        else
-            l.add(null);
-        if(!lista.contains(arribaNorte) && arribaNorte.getOcupado() == 0)
-            l.add(arribaNorte);
-        else
-            l.add(null);
-        if(!lista.contains(arribaOeste) && arribaOeste.getOcupado() == 0)
-            l.add(arribaOeste);
-        else
-            l.add(null);
-        if(!lista.contains(arribaSur) &&  arribaSur.getOcupado() == 0)
-            l.add(arribaSur);
-        else
-            l.add(null);
-        if(!lista.contains(abajoEste) && abajoEste.getOcupado() == 0)
-            l.add(abajoEste);
-        else
-            l.add(null);
-        if(!lista.contains(abajoNorte)  && abajoNorte.getOcupado() == 0)
-            l.add(abajoNorte);
-        else
-            l.add(null);
-        if(!lista.contains(abajoOeste) && abajoOeste.getOcupado() == 0)
-            l.add(abajoOeste);
-        else
-            l.add(null);
-        if(!lista.contains(abajoSur) && abajoSur.getOcupado() == 0)
-            l.add(abajoSur);
-        else
-            l.add(null);*/
         return l;
     }
-    
-//    public LinkedList<Nodo> getSucesores(HeapNodo anotados){
-//        LinkedList<Nodo> l = new LinkedList<>();
-//        LinkedList<Nodo> lista = anotados.getLista();
-//        if(!lista.contains(norte) && norte.getOcupado() < 0)
-//            l.add(norte);
-//        else
-//            l.add(new Nodo(-1, altura, espacio, i, j, k));
-//            l.add(null);
-//        if(!lista.contains(norEste) && norEste.getOcupado() < 0)
-//            l.add(norEste);
-//        else
-//            l.add(new Nodo(-2, altura, espacio, i, j, k));
-//        if(!lista.contains(norOeste) && norOeste.getOcupado() < 0)
-//            l.add(norOeste);
-//        else
-//            l.add(new Nodo(-3, altura, espacio, i, j, k));;
-//        if(!lista.contains(oeste)  && norOeste.getOcupado() == 0)
-//            l.add(oeste);
-//        else
-//            l.add(new Nodo(-4, altura, espacio, i, j, k));;
-//        if(!lista.contains(sur) && sur.getOcupado() == 0)
-//            l.add(sur);
-//        else
-//            l.add(new Nodo(-5, altura, espacio, i, j, k));;
-//        if(!lista.contains(surEste) && surEste.getOcupado() == 0)
-//            l.add(surEste);
-//        else
-//            l.add(new Nodo(-6, altura, espacio, i, j, k));;
-//        if(!lista.contains(surOeste) && surOeste.getOcupado() == 0)
-//            l.add(surOeste);
-//        else
-//            l.add(new Nodo(-7, altura, espacio, i, j, k));;
-//        if(!lista.contains(este) && este.getOcupado() == 0)
-//            l.add(este);
-//        else
-//            l.add(new Nodo(-8, altura, espacio, i, j, k));;
-//        if(!lista.contains(arriba) && arriba.getOcupado() == 0)
-//            l.add(arriba);
-//        else
-//            l.add(new Nodo(-9, altura, espacio, i, j, k));;
-//        if(!lista.contains(abajo) && abajo.getOcupado() == 0)
-//            l.add(abajo);
-//        else
-//            l.add(new Nodo(-10, altura, espacio, i, j, k));;
-//        if(!lista.contains(arribaEste) && arribaEste.getOcupado() == 0)
-//            l.add(arribaEste);
-//        else
-//            l.add(new Nodo(-11, altura, espacio, i, j, k));;
-//        if(!lista.contains(arribaNorte) && arribaNorte.getOcupado() == 0)
-//            l.add(arribaNorte);
-//        else
-//            l.add(new Nodo(-12, altura, espacio, i, j, k));;
-//        if(!lista.contains(arribaOeste) && arribaOeste.getOcupado() == 0)
-//            l.add(arribaOeste);
-//        else
-//            l.add(new Nodo(-13, altura, espacio, i, j, k));;
-//        if(!lista.contains(arribaSur) &&  arribaSur.getOcupado() == 0)
-//            l.add(arribaSur);
-//        else
-//            l.add(new Nodo(-14, altura, espacio, i, j, k));;
-//        if(!lista.contains(abajoEste) && abajoEste.getOcupado() == 0)
-//            l.add(abajoEste);
-//        else
-//            l.add(new Nodo(-15, altura, espacio, i, j, k));;
-//        if(!lista.contains(abajoNorte)  && abajoNorte.getOcupado() == 0)
-//            l.add(abajoNorte);
-//        else
-//            l.add(new Nodo(-16, altura, espacio, i, j, k));;
-//        if(!lista.contains(abajoOeste) && abajoOeste.getOcupado() == 0)
-//            l.add(abajoOeste);
-//        else
-//            l.add(new Nodo(-17, altura, espacio, i, j, k));;
-//        if(!lista.contains(abajoSur) && abajoSur.getOcupado() == 0)
-//            l.add(abajoSur);
-//        else
-//            l.add(new Nodo(-18, altura, espacio, i, j, k));;
-//        return l;
-//    }
  
     public boolean isLlegadaAvion(Aeronave a){
         if(aeropuerto == null)

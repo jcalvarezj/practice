@@ -197,7 +197,6 @@ public class Aeropuerto {
         if(puedeAterrizar(aeronave) && getBounds().contains(aeronave.getPosicionFinal()) &&
                 (getBounds().intersects(aeronave.getBounds()))) {
                 aeronave.setDetenerHilo(true);
-                //aeronaves.add(aeronave);
                 return true;
         }
         return false;

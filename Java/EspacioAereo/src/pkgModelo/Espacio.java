@@ -127,8 +127,6 @@ public class Espacio {
                         }
                     }
                 }
-        
-        //bloquear();
     }
     
     
@@ -143,7 +141,6 @@ public class Espacio {
                 mapa[i][1][8].setOcupado(-1);
             
         }
-        //mapa[100][5][8].setOcupado(-1);
     }
 
     /**

@@ -138,12 +138,6 @@ public class PanelJuego extends javax.swing.JPanel implements MouseMotionListene
             }
             repaint();
         }
-//        else {
-//            Point puntoSeleccion = new Point((int)e.getX(), (int)e.getY());
-//            juego.seleccionarAeronave(puntoSeleccion);
-//            if(juego.seleccionarAeropuerto(puntoSeleccion) != null)
-//                juego.seleccionarAeropuerto(puntoSeleccion).setSeleccion(false);
-//        }
         requestFocusInWindow(); //necesario para mantener el foco en el panel para eventos del teclado
     }
 

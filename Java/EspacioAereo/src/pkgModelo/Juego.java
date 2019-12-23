@@ -56,15 +56,6 @@ public class Juego implements Runnable{
     int lanzamiento = -1;
     private LinkedList<Nodo> llegadas = new LinkedList<>();
 
-//    public Juego(PanelJuego panel, int minuto) {
-//        gameOver = false;
-//        mapa = new Espacio();
-//        aeropuertos = new LinkedList<>();
-//        reloj = new Reloj(minuto, this);
-//        lineaSalida = NORTE;
-//        this.panel = panel;
-//    }
-    
     public Juego(PanelJuego panel, Reloj reloj) {
         gameOver = false;
         espacio = new Espacio();
@@ -77,14 +68,6 @@ public class Juego implements Runnable{
         this.reloj = reloj;
         pilotoAutomatico = false;
     }
-    
-    /*
-    public void agregarAeropuerto(Aeropuerto a) throws AeropuertoNombreExistenteException{
-        if(buscarAeropuerto(a.getNombre()) == null)
-            aeropuertos.add(a);
-        else
-            throw new AeropuertoNombreExistenteException();
-    }*/
     
     public void agregarAeropuerto(Aeropuerto a, Nodo n) throws AeropuertoNombreExistenteException{
         if(buscarAeropuerto(a.getNombre()) == null)
@@ -144,25 +127,21 @@ public class Juego implements Runnable{
         posicion = Espacio.buscarCasillaPosicion(posicion, espacio.getMapa()).getPosicion();
         if(lineaSalida == OESTE) {
             for(int i = 0; i < espacio.getMapa()[0].length; i++)
-                //if(posicion.equals(mapa.getEspacio()[0][i].getPosicion()))
                 if(posicion.equals(espacio.getMapa()[0][i][0].getPosicion()))
                     throw new AeropuertoPosicionSobreLineaException();
         }
         else if(lineaSalida == ESTE) {
             for(int i = 0; i < espacio.getMapa()[0].length; i++)
-                //if(posicion.equals(mapa.getEspacio()[14][i].getPosicion()))
                 if(posicion.equals(espacio.getMapa()[0][i][14].getPosicion()))
                     throw new AeropuertoPosicionSobreLineaException();
         }
         else if(lineaSalida == NORTE) {
             for(int i = 0; i < espacio.getMapa()[0][0].length; i++)
-                //if(posicion.equals(mapa.getEspacio()[i][0].getPosicion()))
                 if(posicion.equals(espacio.getMapa()[0][0][i].getPosicion()))
                     throw new AeropuertoPosicionSobreLineaException();
         }
         else if(lineaSalida == SUR) {
             for(int i = 0; i < espacio.getMapa()[0][0].length; i++)
-                //if(posicion.equals(mapa.getEspacio()[i][10].getPosicion()))
                 if(posicion.equals(espacio.getMapa()[0][10][i].getPosicion()))
                     throw new AeropuertoPosicionSobreLineaException();
         }
@@ -191,7 +170,6 @@ public class Juego implements Runnable{
             while(!oleada.isEmpty()) {
                 aeronaves.enqueue(oleada.remove());
                 Aeronave a = aeronaves.ultimo();
-                //a.generarRuta();
                 Thread hiloAeronave = new Thread(a);
                 hiloAeronave.start();
                 aeronaves.heapSortAscendente();
@@ -199,40 +177,8 @@ public class Juego implements Runnable{
         }
     }
     
-//    private void oleada(Queue<Aeronave> oleada, HeapEntero tiemposOleada, int lanzamiento) {
-//        if(reloj.getSegundo() == 0) {
-//            oleada = new LinkedList<>();
-//            tiemposOleada = new HeapEntero();
-//            oleada = aeronavesOleada();
-//            tiemposOleada = tiemposOleada(oleada);
-//            lanzamiento = tiemposOleada.dequeueMinimo();
-//        }
-//        while(lanzamiento == reloj.getSegundo() && !oleada.isEmpty()) {
-//            aeronaves.enqueue(oleada.remove());
-//            //System.out.println(aeronaves.ultimo().getId());
-//            Thread hiloAeronave = new Thread(aeronaves.ultimo());
-//            //hiloAeronave.start();
-//            threadPool.execute(hiloAeronave);
-//            aeronaves.heapSortAscendente();
-//        }
-//        if(!tiemposOleada.isEmpty())
-//            lanzamiento = tiemposOleada.dequeueMinimo();
-//    }
-//    
-//    private HeapEntero tiemposOleada(Queue<Aeronave> oleada) {
-//        HeapEntero segundos = new HeapEntero();
-//        int tiempos = oleada.size();
-//        while(tiempos > 0) {
-//            segundos.enqueue((int)(Math.random()*60));
-//            tiempos--;
-//        }
-//        return segundos;
-//    }
-    
     private Queue<Aeronave> aeronavesOleada() {
-        //int numeroAeronaves = 1;
         int numeroAeronaves = (int)(Math.random()*4+1);
-        //int numeroAeronaves = 8;
         Queue<Aeronave> oleada = new LinkedList<>();
         LinkedList<Nodo> nodosOcupados = new LinkedList<>();
         while(numeroAeronaves > 0) {
@@ -472,13 +418,6 @@ public class Juego implements Runnable{
         
     }
     
-//    public static void relacionarColumnaNodosAeropuerto(Aeropuerto a, Nodo nodo, Espacio espacio){
-//        int x = nodo.getI();
-//        int y = nodo.getJ();
-//        for (int i = 0; i < espacio.getMapa().length; i++)
-//            espacio.getMapa()[i][x][y].setAeropuerto(a);
-//    }
-    
     private void relacionarColumnaNodosAeropuerto(Aeropuerto a, Nodo nodo){
         int x = nodo.getI();
         int y = nodo.getJ();
@@ -588,6 +527,5 @@ public class Juego implements Runnable{
     public void setLlegadas(LinkedList<Nodo> llegadas) {
         this.llegadas = llegadas;
     }
-
     
 }

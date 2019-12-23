@@ -208,42 +208,6 @@ public class HeapNodo {
         return(lista.size() == 0);
     }
     
-    
-//    /**
-//     * ¿Agregar en la posicion correcta?
-//     * <b>se puede mejorar como agregación binaria</b>
-//     * @param n 
-//     */
-//    public void agregar(Nodo n, Aeronave a){
-//        if(lista.size() == 0)
-//            lista.add(n);
-//        else{
-//            int i=0;
-//            boolean agregado = false;
-//            while(i < lista.size() && !agregado){
-//                System.out.println("se supone que el nodo"+n+" con nave "+a.getId()+" ... "+n.getFAeronave(a.getId())+" : "+lista.get(i).getFAeronave(a.getId()));
-//                if(n.getFAeronave(a.getId()) < lista.get(i).getFAeronave(a.getId())){
-//                    
-//                    lista.add(i, n);
-//                    agregado = true;
-//                }
-//                i++;
-//            }
-//            if(!agregado)
-//                lista.add(n);
-//            System.out.println("El estado es "+lista);
-//        }
-//    }
-//    
-//    /**
-//     * Buscar si el nodo se encuentra en la estructura
-//     * @param n
-//     * @return -1 si no está, valor > 0 en caso contrario
-//     *//*
-//    public int buscaNodoPorG(Nodo n){
-//        return 0;
-//    }*/
-    
     /**
      * Buscar nodo en la estructura
      * @param n
