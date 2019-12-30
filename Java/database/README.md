@@ -6,4 +6,6 @@ Build on linux executing **./buildScript.sh**
 
 Execute the generated JAR using **java -jar JDBCExample.jar**
 
-Made by Juan C. Alvarez and Andrez R. Alvarez
+The database can be imported from the games\_tournament.sql script
+
+Made by Juan C. Alvarez
