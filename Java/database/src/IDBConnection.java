@@ -24,7 +24,7 @@ public interface IDBConnection {
 				);
 
 			if(connection != null) {
-				System.out.println("Conexión exitosa!!!");
+				System.out.println("Successful connection!!");
 
 			}
 		}

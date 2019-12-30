@@ -34,9 +34,11 @@ if [ $? -eq "0" ]
 
 		mv JDBCExample.jar ../
 
-		cd ..
-
-		rm -r build
 	else
 		echo "Stopping here. Compilation failed"
 fi
+
+echo "Cleaning up build folder..."
+
+cd ..
+rm -r build
