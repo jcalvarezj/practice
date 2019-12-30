@@ -42,5 +42,10 @@ public class Consola {
 	public void setFirmware(String firmware) {
 		this.firmware = firmware;
 	}
+
+	@Override
+	public String toString() {
+		return "(" + consolaId + "): " + nombre + " - " + firmware;
+	}
 }
 

@@ -15,7 +15,7 @@ public class Main {
 
 		ArrayList<Consola> consolas = cdao.getAllConsolas();
 
-		//System.out.println(""+connection);
+		System.out.println("The consolas are: " + consolas);
 
 	}
 

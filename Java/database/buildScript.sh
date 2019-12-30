@@ -5,33 +5,38 @@
 
 if [ ! -d "build" ]
 	then
-		echo "build folder does not exist, creating..."
+		echo "The build folder does not exist, creating..."
 		mkdir build
-		echo "build folder created"
+		echo "The build folder was created"
 	else
-		echo "build folder already exists"
+		echo "The build folder already exists"
 fi
 
-echo "copying resources to build folder..."
+echo "Copying resources to build folder..."
 
 cp -r lib/ build/
 
-echo "proceeding with compilation..."
+echo "Proceeding with compilation..."
 
 javac src/*.java -d build
 
-cd build
+if [ $? -eq "0" ]
+	then
+		cd build
 
-echo "creating manifest (Manifest.txt)..."
+		echo "Creating manifest (Manifest.txt)..."
 
-echo "Class-Path: lib/mysql-connector-java-5.1.48.jar" >> Manifest.txt
-echo "Main-Class: Main" >> Manifest.txt
-echo "" >> Manifest.txt
+		echo "Class-Path: lib/mysql-connector-java-5.1.48.jar" >> Manifest.txt
+		echo "Main-Class: Main" >> Manifest.txt
+		echo "" >> Manifest.txt
 
-jar cvfm JDBCExample.jar Manifest.txt .
+		jar cvfm JDBCExample.jar Manifest.txt .
 
-mv JDBCExample.jar ../
+		mv JDBCExample.jar ../
 
-cd ..
+		cd ..
 
-rm -r build
+		rm -r build
+	else
+		echo "Stopping here. Compilation failed"
+fi

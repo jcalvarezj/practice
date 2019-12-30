@@ -18,8 +18,6 @@ public interface IDBConnection {
 		System.out.println("Attempting to connect to Database...");
 		
 		try {
-			//Class.forName("com.mysql.jdbc.Driver");
-
 				connection = DriverManager.getConnection(
 					Configuration.URL + Configuration.DB,
 					Configuration.USER, Configuration.PASSWORD
