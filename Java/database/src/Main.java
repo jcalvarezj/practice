@@ -84,7 +84,7 @@ public class Main {
 					input.nextLine();
 					System.out.println("Enter the desired name to find");
 					String name = input.nextLine();
-					consolas = cDAO.getConsolaByName(name);
+					consolas = cDAO.getConsolasByName(name);
 					break;
 				case 4:
 					System.out.println("\n-- Returning... --");
@@ -104,8 +104,43 @@ public class Main {
 	}
 
 	private static void insert(Scanner input, ConsolaDAO cDAO) {
-		// TODO
-		System.out.println("WORK IN PROGRESS");
+		boolean correct = true;
+		String name = "";
+		String firmware = "";
+
+		do {
+			input.nextLine();
+			System.out.println("Please enter the Consola's name");
+			name = input.nextLine();
+
+			if (name.equals("")) {
+				System.out.println("Please try again. Empty name not allowed");
+				correct = false;
+			}
+			else
+				correct = true;
+
+		} while (!correct);
+
+		do{
+			System.out.println("Please enter the Consola's firmware");
+			firmware = input.nextLine();
+
+			if (firmware.equals("")) {
+				System.out.println("Please try again. Firmware can't be empty");
+				correct = false;
+			}
+			else
+				correct = true;
+
+		} while (!correct);
+
+		boolean insertion = cDAO.insertConsola(name, firmware);
+
+		if (insertion)
+			System.out.println("\nSaved successfully!\n");
+		else
+			System.out.println("\nSorry, could not save.\n");
 	}
 
 	private static void delete(Scanner input, ConsolaDAO cDAO) {

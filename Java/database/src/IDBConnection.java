@@ -15,7 +15,7 @@ public interface IDBConnection {
 
 	default Connection connectToDatabase() {
 		Connection connection = null;
-		System.out.println("Attempting to connect to Database...");
+		System.out.println("\nAttempting to connect to Database...");
 		
 		try {
 				connection = DriverManager.getConnection(
