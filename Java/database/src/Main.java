@@ -81,6 +81,10 @@ public class Main {
 						consolas = cDAO.getConsolaById(id);
 					break;
 				case 3:
+					input.nextLine();
+					System.out.println("Enter the desired name to find");
+					String name = input.nextLine();
+					consolas = cDAO.getConsolaByName(name);
 					break;
 				case 4:
 					System.out.println("\n-- Returning... --");

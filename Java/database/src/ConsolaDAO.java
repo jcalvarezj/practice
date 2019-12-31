@@ -42,7 +42,7 @@ public class ConsolaDAO implements IDBConnection {
 		ArrayList<Consola> consolas = new ArrayList<>();
 
 		String sql = "SELECT * FROM " + Configuration.TCONSOLAS +
-			" WHERE " + Configuration.TCONSOLAS_ID + "=?;";
+			" WHERE " + Configuration.TCONSOLAS_ID + " = ?;";
 
 		try (Connection connection = connectToDatabase()) {
 			if (connection != null) {
@@ -64,6 +64,31 @@ public class ConsolaDAO implements IDBConnection {
 		return consolas;
 	}
 
+	public ArrayList<Consola> getConsolaByName(String name) {
+		ArrayList<Consola> consolas = new ArrayList<>();
+
+		String sql = "SELECT * FROM " + Configuration.TCONSOLAS +
+			" WHERE " + Configuration.TCONSOLAS_NAME + " LIKE UPPER(?);";
+
+		try (Connection connection = connectToDatabase()) {
+			if (connection != null) {
+				PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+				preparedStatement.setString(1, "%"+name+"%");
+				
+				ResultSet result = preparedStatement.executeQuery();
+
+				while(result.next()) {
+					Consola consola = newConsola(result);
+					consolas.add(consola);
+				}
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		return consolas;
+	}
 	private Consola newConsola(ResultSet result) throws SQLException {
 		return new Consola(
 			Integer.parseInt(result.getString(Configuration.TCONSOLAS_ID)),
