@@ -16,7 +16,7 @@ public interface IDBConnection {
 	/**
 	 * Creates and returns a {@code Connection} object with the attempted
 	 * connection to the database
-	 * @returns The {@code Connection} instance with the session; null if failed
+	 * @return The {@code Connection} instance with the session; null if failed
 	 */
 	default Connection connectToDatabase() {
 		Connection connection = null;

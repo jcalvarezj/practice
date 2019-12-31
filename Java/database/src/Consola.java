@@ -15,6 +15,9 @@ public class Consola {
 
 	/**
 	 * Creates a new Consola instance from an id, a name, and a firmware
+	 * @param consolaId The id of the Consola
+	 * @param nombre The nombre of the Consola
+	 * @param firmware The firmware of the Consola
 	 */
 	public Consola(int consolaId, String nombre, String firmware) {
 		this.consolaId = consolaId;
@@ -46,7 +49,7 @@ public class Consola {
 
 	/**
 	 * Sets the Consola's name
-	 * @param consolaId The new name
+	 * @param nombre The new name
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -61,7 +64,7 @@ public class Consola {
 
 	/**
 	 * Sets the Consola's firmware
-	 * @param consolaId The new firmware
+	 * @param firmware The new firmware
 	 */
 	public void setFirmware(String firmware) {
 		this.firmware = firmware;
