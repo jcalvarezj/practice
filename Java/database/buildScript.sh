@@ -20,10 +20,10 @@ echo "Proceeding with compilation..."
 
 javac src/*.java -d build
 
+cd build
+
 if [ $? -eq "0" ]
 	then
-		cd build
-
 		echo "Creating manifest (Manifest.txt)..."
 
 		echo "Class-Path: lib/mysql-connector-java-5.1.48.jar" >> Manifest.txt
