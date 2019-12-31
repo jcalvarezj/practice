@@ -169,8 +169,27 @@ public class ConsolaDAO implements IDBConnection {
 	 * @return boolean indicating success of operation
 	 */
 	public boolean updateConsolaById(int id, String name, String firmware) {
-		//TODO
-		return false;
+		int result = 0;
+		String sql = "UPDATE " + Configuration.TCONSOLAS +
+			" SET " + Configuration.TCONSOLAS_NAME + " = ?, " +
+			Configuration.TCONSOLAS_FW + " = ?" +
+			" WHERE " + Configuration.TCONSOLAS_ID + " = ?";
+
+		try (Connection connection = connectToDatabase()) {
+			if (connection != null) {
+				PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+				preparedStatement.setString(1, name);
+				preparedStatement.setString(2, firmware);
+				preparedStatement.setInt(3, id);
+
+				result = preparedStatement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result > 0;
 	}
 
 	/**

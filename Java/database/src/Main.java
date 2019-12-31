@@ -159,8 +159,48 @@ public class Main {
 	}
 
 	private static void update(Scanner input, ConsolaDAO cDAO) {
-		// TODO
-		System.out.println("WORK IN PROGRESS");
+		System.out.println("Enter the id to update");
+		
+		int id = getIntegerInput(input);
+		String name = "";
+		String firmware = "";
+		boolean correct = true;
+
+		do {
+			input.nextLine();
+			System.out.println("Please enter the Consola's name");
+			name = input.nextLine();
+
+			if (name.equals("")) {
+				System.out.println("Please try again. Empty name not allowed");
+				correct = false;
+			}
+			else
+				correct = true;
+
+		} while (!correct);
+
+		do{
+			System.out.println("Please enter the Consola's firmware");
+			firmware = input.nextLine();
+
+			if (firmware.equals("")) {
+				System.out.println("Please try again. Firmware can't be empty");
+				correct = false;
+			}
+			else
+				correct = true;
+
+		} while (!correct);
+
+		if (id > 0) {
+			boolean update = cDAO.updateConsolaById(id, name, firmware);
+
+			if (update)
+				System.out.println("\nUpdated successfully!\n");
+			else
+				System.out.println("\nSorry, could not update.\n");
+		}
 	}
 
 	private static int getIntegerInput(Scanner input) {
