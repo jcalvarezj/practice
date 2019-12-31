@@ -1,5 +1,5 @@
 /*
- * // Description goes here
+ * Basic JDBC example. Not using packages best practice for making it quick
  *
  * @author J. Alvarez
  */
@@ -9,8 +9,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/**
+ * Application entry point and main program
+ */
 public class Main {
 
+	/**
+	 * Entry method for the program
+	 * @param args Array of {@code String} containing program arguments
+	 */
 	public static void main(String[] args) {
 
 		boolean finished = false;
@@ -56,6 +63,13 @@ public class Main {
 		input.close();
 	}
 
+	/**
+	 * Shows the query submenu and attempts to perform a query using the
+	 * corresponding DAO and user input
+	 *
+	 * @param input The currently used {@code Scanner} for user input
+	 * @param cDAO The ConsolaDAO for requesting CRUD operations
+	 */
 	private static void query(Scanner input, ConsolaDAO cDAO) {
 		int queryOption = 0;
 		boolean finishedQuery = false;
@@ -103,6 +117,13 @@ public class Main {
 		} while (!finishedQuery);
 	}
 
+	/**
+	 * Shows the insert submenu and attempts to perform an insertion using the
+	 * corresponding DAO and user input
+	 *
+	 * @param input The currently used {@code Scanner} for user input
+	 * @param cDAO The ConsolaDAO for requesting CRUD operations
+	 */
 	private static void insert(Scanner input, ConsolaDAO cDAO) {
 		boolean correct = true;
 		String name = "";
@@ -143,6 +164,13 @@ public class Main {
 			System.out.println("\nSorry, could not save.\n");
 	}
 
+	/**
+	 * Shows the delete submenu and attempts to perform a deletion using the
+	 * corresponding DAO and user input
+	 *
+	 * @param input The currently used {@code Scanner} for user input
+	 * @param cDAO The ConsolaDAO for requesting CRUD operations
+	 */
 	private static void delete(Scanner input, ConsolaDAO cDAO) {
 		System.out.println("Enter the id to delete");
 
@@ -158,6 +186,13 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Shows the insert submenu and attempts to perform an update using the
+	 * corresponding DAO and user input
+	 *
+	 * @param input The currently used {@code Scanner} for user input
+	 * @param cDAO The ConsolaDAO for requesting CRUD operations
+	 */
 	private static void update(Scanner input, ConsolaDAO cDAO) {
 		System.out.println("Enter the id to update");
 		
@@ -203,6 +238,13 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Retrieves numbers for user input and shows a message if the input is not
+	 * a number
+	 *
+	 * @param input The currently used {@code Scanner} for user input
+	 * @return -1 if input is incorrect, the input otherwise
+	 */
 	private static int getIntegerInput(Scanner input) {
 		int number = -1;
 

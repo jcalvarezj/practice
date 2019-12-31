@@ -1,5 +1,7 @@
 /*
  * Basic JDBC example. Not using packages best practice for making it quick
+ *
+ * @author J. Alvarez
  */
 
 import java.sql.Connection;
@@ -13,8 +15,6 @@ import java.util.ArrayList;
  *
  * Implements {@link IDBConnection} as it connects with the database for the
  * CRUD operations
- *
- * @author J. Alvarez
  */
 public class ConsolaDAO implements IDBConnection {
 	

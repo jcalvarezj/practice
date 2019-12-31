@@ -1,5 +1,7 @@
 /*
  * Basic JDBC example. Not using packages best practice for making it quick
+ *
+ * @author J. Alvarez
  */
 
 import java.sql.Connection;
@@ -8,11 +10,14 @@ import java.sql.DriverManager;
 /**
  * This interface provides functionality for connecting to a database through
  * the JDBC driver
- *
- * @author J. Alvarez
  */
 public interface IDBConnection {
 
+	/**
+	 * Creates and returns a {@code Connection} object with the attempted
+	 * connection to the database
+	 * @returns The {@code Connection} instance with the session; null if failed
+	 */
 	default Connection connectToDatabase() {
 		Connection connection = null;
 		System.out.println("\nAttempting to connect to Database...");
