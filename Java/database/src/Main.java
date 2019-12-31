@@ -35,12 +35,16 @@ public class Main {
 						query(input);
 						break;
 					case 2:
+						insert(input);
 						break;
 					case 3:
+						delete(input);
 						break;
 					case 4:
+						update(input);
 						break;
 					case 5:
+						System.out.println("Good bye!");
 						finished = true;
 						break;
 				}
@@ -75,13 +79,38 @@ public class Main {
 
 			if (queryOption > 0 && queryOption < 5) {
 				System.out.println("Now you selected " + queryOption);
-				if(queryOption == 4)
-					finishedQuery = true;
+				switch (queryOption) {
+					case 1:
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					case 4:
+						System.out.println("-- Returning... --");
+						finishedQuery = true;
+						break;
+				}
 			}
 			else
 				System.out.println("INVALID OPTION!!"); 
 
 		} while (!finishedQuery);
+	}
+
+	private static void insert(Scanner input) {
+		// TODO
+		System.out.println("WORK IN PROGRESS");
+	}
+
+	private static void delete(Scanner input) {
+		// TODO
+		System.out.println("WORK IN PROGRESS");
+	}
+
+	private static void update(Scanner input) {
+		// TODO
+		System.out.println("WORK IN PROGRESS");
 	}
 
 	private static int getOption(Scanner input) {
