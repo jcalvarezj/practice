@@ -143,8 +143,22 @@ public class ConsolaDAO implements IDBConnection {
 	 * @return boolean indicating success of operation
 	 */
 	public boolean deleteConsolaById(int id) {
-		//TODO
-		return false;
+		int result = 0;
+
+		String sql = "DELETE FROM " + Configuration.TCONSOLAS +
+			" WHERE " + Configuration.TCONSOLAS_ID + " = ?";
+
+		try (Connection connection = connectToDatabase()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setInt(1, id);
+
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result > 0;
 	}
 
 	/**

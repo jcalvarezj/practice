@@ -144,8 +144,18 @@ public class Main {
 	}
 
 	private static void delete(Scanner input, ConsolaDAO cDAO) {
-		// TODO
-		System.out.println("WORK IN PROGRESS");
+		System.out.println("Enter the id to delete");
+
+		int id = getIntegerInput(input);
+
+		if (id > 0) {
+			boolean deletion = cDAO.deleteConsolaById(id);
+
+			if (deletion)
+				System.out.println("\nDeleted successfully!\n");
+			else
+				System.out.println("\nSorry, could not delete.\n");
+		}
 	}
 
 	private static void update(Scanner input, ConsolaDAO cDAO) {
@@ -154,16 +164,16 @@ public class Main {
 	}
 
 	private static int getIntegerInput(Scanner input) {
-		int option = -1;
+		int number = -1;
 
 		try {
-			option = input.nextInt();
+			number = input.nextInt();
 		} catch (InputMismatchException e) {
 			System.out.println("\n -- NUMBERS ONLY!! --");
 			input.next();
 		}
 		
-		return option;
+		return number;
 	}
 
 }
