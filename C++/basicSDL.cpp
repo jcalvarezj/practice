@@ -1,5 +1,5 @@
 /*
- * Basic example of an 
+ * Basic example of a program that uses the SDL library
  *
  * @author J. Alvarez
  */
@@ -24,7 +24,7 @@ int main(int argc, char ** args) {
 
 	if (!window) {
 		std::cout << "Could not create the window. " << SDL_GetError() <<
-		   	std::endl;
+			std::endl;
 		SDL_Quit();
 		return 2;
 	}
@@ -61,13 +61,11 @@ int main(int argc, char ** args) {
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
 	SDL_RenderPresent(renderer);
 
-
-
 	bool quit = false;
 
 	SDL_Event event;
 
-	while (!quit) {		
+	while (!quit) {
 
 		while (SDL_PollEvent(&event))
 			if (event.type == SDL_QUIT)
