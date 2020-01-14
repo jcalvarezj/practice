@@ -54,7 +54,31 @@ int main(int argc, char ** args) {
 
 	Uint32 * buffer = new Uint32[WIDTH * HEIGHT];
 
-	memset(buffer, 255, WIDTH * HEIGHT * sizeof(Uint32));
+	memset(buffer, 0, WIDTH * HEIGHT * sizeof(Uint32));
+
+	cint paintCol = WIDTH/2;
+	cint paintRow = HEIGHT/2;
+
+	for (int i = 0; i < HEIGHT; i++)
+		buffer[i * WIDTH + paintCol] = 0x0FFFF0FF;
+
+	for (int i = 0; i < WIDTH; i++)
+		buffer[paintRow * WIDTH + i] = 0x0FFFF0FF;
+
+	for (int i = 0; i < HEIGHT/2 - 1; i++)
+		for (int j = 0; j < WIDTH/2 - 1; j++) {
+			buffer[i * WIDTH + j] = 0xFFCC00FF;
+			buffer[(i * WIDTH + j)*2] = 0xFFCC00FF;			
+			buffer[(i * WIDTH + j) + WIDTH/2 + 2] = 0x00CCF0FF;
+		}
+
+
+
+	buffer[40 * WIDTH + 100] = 0xFF00FF;
+	buffer[40 * WIDTH + 101] = 0xFF00FF;
+	buffer[40 * WIDTH + 102] = 0xFF00FF;
+	buffer[40 * WIDTH + 103] = 0xFF0000;
+	buffer[40 * WIDTH + 104] = 0xFF0000;
 
 	SDL_UpdateTexture(texture, NULL, buffer, WIDTH * sizeof(Uint32));
 	SDL_RenderClear(renderer);
