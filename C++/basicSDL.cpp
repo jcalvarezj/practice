@@ -73,8 +73,6 @@ int main(int argc, char ** args) {
 			buffer[(i + HEIGHT/2 + 1) * WIDTH + j + WIDTH/2 + 2] = 0xAD0C0A00;
 		}
 
-
-
 	buffer[40 * WIDTH + 100] = 0xFF00FF;
 	buffer[40 * WIDTH + 101] = 0xFF00FF;
 	buffer[40 * WIDTH + 102] = 0xFF00FF;
