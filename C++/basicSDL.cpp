@@ -68,8 +68,9 @@ int main(int argc, char ** args) {
 	for (int i = 0; i < HEIGHT/2 - 1; i++)
 		for (int j = 0; j < WIDTH/2 - 1; j++) {
 			buffer[i * WIDTH + j] = 0xFFCC00FF;
-			buffer[(i * WIDTH + j)*2] = 0xFFCC00FF;			
 			buffer[(i * WIDTH + j) + WIDTH/2 + 2] = 0x00CCF0FF;
+			buffer[(i + HEIGHT/2 + 1) * WIDTH + j] = 0x0FCC0A00;
+			buffer[(i + HEIGHT/2 + 1) * WIDTH + j + WIDTH/2 + 2] = 0xAD0C0A00;
 		}
 
 
