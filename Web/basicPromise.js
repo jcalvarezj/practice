@@ -5,14 +5,14 @@ const OPTS = {
 }
 
 function imprimirPersonaje(personajeData) {
-    document.write(`Hola! Soy ${personajeData.name}`)
+    document.write(`Hola! Soy ${personajeData.name}<br/>`)
 }
 
 function imprimirError(id) {
     document.write(`No se pudo obtener el personaje de id ${id}`)
 }
 
-function obtenerPersonaPorId(id) {
+function obtenerPromesaPersonaPorId(id) {
     return new Promise(
         (resolve, reject) => {
             const URL = `${URL_BASE}${PERSON_URI.replace(':id', id)}`
@@ -26,4 +26,19 @@ function obtenerPersonaPorId(id) {
     )
 }
 
-obtenerPersonaPorId(1).then(imprimirPersonaje).catch(imprimirError)
+obtenerPromesaPersonaPorId(1).then(imprimirPersonaje).catch(imprimirError)
+
+async function obtenerPersonas() {
+    var ids = [2, 3, 4, 5, 6]
+
+    var promesas = ids.map( id => obtenerPromesaPersonaPorId(id) )
+
+    try {
+        var personas = await Promise.all(promesas)
+        personas.forEach( persona => imprimirPersonaje(persona) )
+    } catch (id) {
+        imprimirError(id)
+    }
+}
+
+obtenerPersonas()
