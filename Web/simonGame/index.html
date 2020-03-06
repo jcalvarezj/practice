@@ -1,0 +1,240 @@
+<!-- Based on Sacha Lifszyc's JavaScript fundamentals course on Platzi -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon</title>
+    <style>
+        body {
+            background-color: #dedede;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .game-board {
+            height: 100vh;
+            width: 100vh;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+            max-height: 60vh;
+            max-width: 60vh;
+        }
+        
+        .btn-start {
+            width: 400px;
+            height: 100px;
+            background-color: bisque;
+            color: black;
+            font-size: 2.5rem;
+            position: absolute;
+            top: calc(50% - 50px);
+            left: calc(50% - 200px);
+        }
+
+        .green {
+            background-color: #6ab04c;
+        }
+
+        .green.light {
+            background-color: #badc58;
+        }
+
+        .blue {
+            background-color: #22a6b3;
+        }
+
+        .blue.light {
+            background-color: #7ed6ef;
+        }
+
+        .purple {
+            background-color: #be2edd;
+        }
+        .purple.light {
+            background-color: #e056fd;
+        }
+        .orange {
+            background-color: #f0932b;
+        }
+        .orange.light {
+            background-color: #ffbe76;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .color {
+            width: 50%;
+            height: 50%;
+            display: inline-block;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-board">
+        <div id="blueButton" class="color blue left" data-color="blue"></div>
+        <div id="purpleButton" class="color purple right" data-color="purple"></div>
+        <div id="orangeButton" class="color orange left" data-color="orange"></div>
+        <div id="greenButton" class="color green right" data-color="green"></div>
+        <button id="btnStart" class="btn-start" onclick="startGame()">START GAME!!</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        const blueButton = document.getElementById('blueButton')
+        const purpleButton = document.getElementById('purpleButton')
+        const orangeButton = document.getElementById('orangeButton')
+        const greenButton = document.getElementById('greenButton')
+        const btnStart = document.getElementById('btnStart')
+
+        const MAX_LEVEL = 5
+
+        class Game {
+            constructor() {
+                this.initialize = this.initialize.bind(this)
+                this.initialize()
+                this.generateSequence(this.level)
+                this.startLevel()                
+            }
+
+            toggleStartButton() {
+                if (btnStart.classList.contains('hide'))
+                    btnStart.classList.remove('hide')
+                else
+                    btnStart.classList.add('hide')
+            }
+
+            initialize() {                
+                this.level = 1
+                this.colorButtons = {
+                    blueButton,
+                    purpleButton,
+                    orangeButton,
+                    greenButton
+                }
+                this.selectColor = this.selectColor.bind(this)
+                this.toggleStartButton()
+            }
+
+            colorNameFromNumber(number) {
+                switch (number) {
+                    case 0:
+                        return 'blueButton';
+                    case 1:
+                        return 'purpleButton';
+                    case 2:
+                        return 'orangeButton';
+                    case 3:
+                        return 'greenButton';
+                }
+            }
+
+            colorNumberFromName(color) {
+                switch (color) {
+                    case 'blue':
+                        return 0;
+                    case 'purple':
+                        return 1;
+                    case 'orange':
+                        return 2;
+                    case 'green':
+                        return 3;
+                }
+            }
+
+            generateSequence() {
+                this.sequence = new Array(MAX_LEVEL).fill(0).map(n => Math.floor(Math.random() * 4))
+            }
+
+            startLevel() {
+                this.sublevel = 0
+                this.lightSequence()
+                this.addClickEvents()
+            }
+            
+            addClickEvents() {
+                this.colorButtons.blueButton.addEventListener('click', this.selectColor)
+                this.colorButtons.purpleButton.addEventListener('click', this.selectColor)
+                this.colorButtons.orangeButton.addEventListener('click', this.selectColor)
+                this.colorButtons.greenButton.addEventListener('click', this.selectColor)
+            }
+
+            removeClickEvents() {
+                this.colorButtons.blueButton.removeEventListener('click', this.selectColor)
+                this.colorButtons.purpleButton.removeEventListener('click', this.selectColor)
+                this.colorButtons.orangeButton.removeEventListener('click', this.selectColor)
+                this.colorButtons.greenButton.removeEventListener('click', this.selectColor)
+            }
+
+            gameOver() {
+                swal.fire('You Lost', 'Sorry. Wrong sequence!', 'error').then( () => {
+                    this.removeClickEvents()
+                    this.initialize()
+                })
+            }
+
+            gameWon() {
+                swal.fire('Congratulations!', 'You won the game!', 'success').then( () => {
+                    this.initialize()
+                })
+            }
+
+            selectColor(event) {
+                const colorName = event.target.dataset.color
+                const colorNumber = this.colorNumberFromName(colorName)
+                const colorButtonName = `${colorName}Button`
+                this.turnOnColor(colorButtonName)
+
+                if (colorNumber === this.sequence[this.sublevel]) {
+                    this.sublevel++
+                    if (this.sublevel === this.level) {
+                        this.level++
+                        this.removeClickEvents()
+                        if (this.level === (MAX_LEVEL + 1)) {
+                            this.gameWon()
+                        }
+                        else {
+                            setTimeout(() => this.startLevel(), 2000)
+                        }
+                    }                    
+                }
+                else
+                    this.gameOver()
+            }
+
+            lightSequence() {
+                for (let i = 0; i < this.level ; i++) {
+                    let color = this.colorNameFromNumber(this.sequence[i])
+                    setTimeout(() => this.turnOnColor(color), 1000 * i)
+                }
+            }
+
+            turnOnColor(color) {
+                this.colorButtons[color].classList.add('light')
+                setTimeout(() => this.turnOffColor(color), 350)
+            }
+
+            turnOffColor(color) {
+                this.colorButtons[color].classList.remove('light')
+            }
+       }
+
+        function startGame() {
+            window.game = new Game()
+        }
+    </script>
+</body>
+</html>
