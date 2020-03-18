@@ -1,5 +1,17 @@
-# Practice Code
+# Practice Repository
 
-This repository contains practice code for Java, C++, HTML, and more.
+This is my personal repository for programming examples I wrote in different languages:
 
-By ** Juan C. Alvarez **
+* [C](/C)
+* [C++](/C++)
+* [Dart+Flutter](/Dart+Flutter)
+* [HTML+CSS+JS](/Web)
+* [Java](/Java)
+* [Kotlin](/Kotlin)
+* [NodeJS](/NodeJS)
+* [PHP](PHP)
+* [Python 2.7](/Python2.7)
+* [NodeJS](/nodeJS)
+
+These mostly include finished functional drafts from my learning process. Each top-level files and folders correspond to unique examples.
+
