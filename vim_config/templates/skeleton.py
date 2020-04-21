@@ -1,8 +1,13 @@
-#!/usr/bin/python
-#coding=utf-8
+#!/usr/bin/python3
 
-'''
+"""
 Description goes here
-'''
+"""
 
 # Code goes here
+
+def main():
+    pass
+
+if __name__ == '__main__':
+    main()
