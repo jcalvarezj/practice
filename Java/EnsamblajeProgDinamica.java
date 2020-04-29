@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * Este programa resuelve el problema de las líneas de ensamblaje empleando
@@ -32,7 +32,7 @@ public class EnsamblajeProgDinamica {
 		int paso[] = {1,2}; // Tiempo que se tarda en pasar de una línea a otra
 
 		int[][] optimizacion = resolverEstaciones(tiempos, entradas, salidas, paso);
-		LinkedList<String> solucion = obtenerCamino(optimizacion);
+		ArrayList<String> solucion = obtenerCamino(optimizacion);
 		System.out.println("La solución al problema es: " + solucion);
 		System.out.println("Porque la estructura quedó:");
 
@@ -73,8 +73,8 @@ public class EnsamblajeProgDinamica {
 		return tiemposOptimos;
 	}
 
-	public static LinkedList<String> obtenerCamino(int[][] estructura) {
-		LinkedList<String> camino = new LinkedList<String>();
+	public static ArrayList<String> obtenerCamino(int[][] estructura) {
+		ArrayList<String> camino = new ArrayList<String>();
 
 		for (int i=0; i<estructura[0].length; i++)
 			if (estructura[0][i] < estructura[1][i])
