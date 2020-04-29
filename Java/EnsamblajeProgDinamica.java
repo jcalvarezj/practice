@@ -24,6 +24,10 @@ import java.util.ArrayList;
  */
 public class EnsamblajeProgDinamica {
 
+	/**
+		Punto de entrada del programa
+		@param args Argumentos del sistema
+	*/
 	public static void main(String[] args) {
 		int N = 3;  // Cantidad de estaciones intermedias
 		int[][] tiempos = { {5, 1, 1}, {3, 3, 1} };  // Tiempos por línea de ensamblaje (línea: fila; tiempo: columna)
@@ -44,8 +48,13 @@ public class EnsamblajeProgDinamica {
 		}
 	}
 
-	/*
+	/**
 		Este es el método que resuelve el problema mediante programación dinámica
+		@param tiempos S(x, y)
+		@param entradas e(x)
+		@param salidas s(x)
+		@param paso P(x, y)
+		@return Matriz de enteros con las soluciones óptimas de los tiempos para cada estación
 	*/
 	public static int[][] resolverEstaciones(int[][] tiempos, int[] entradas, int[] salidas, int[] paso) {
 		int N = tiempos[0].length+1;		// Una columna de más para el manejo de las salidas
@@ -73,6 +82,12 @@ public class EnsamblajeProgDinamica {
 		return tiemposOptimos;
 	}
 
+
+	/**
+		Permite obtener la solución definitiva del problema, recorriendo la estructura de soluciones óptimas
+		@param estructura La estructura de soluiones óptimas
+		@return Lista de recorridos denotados como Strings de ({línea}, {estación})
+	*/
 	public static ArrayList<String> obtenerCamino(int[][] estructura) {
 		ArrayList<String> camino = new ArrayList<String>();
 
@@ -85,6 +100,12 @@ public class EnsamblajeProgDinamica {
 		return camino;
 	}
 
+	/**
+		Retorna un string de la forma ({a}, {b})
+		@param a Primer valor
+		@param b Segundo valor
+		@return String de la forma ({a}, {b})
+	*/
 	public static String str(int a, int b) {
 		return "("+a+","+b+")";
 	}
