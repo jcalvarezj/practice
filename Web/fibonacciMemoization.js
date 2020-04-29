@@ -13,4 +13,4 @@ function fibonacci(n) {
 }
 
 for (let i = 0; i < 7; i++)
-	console.log(fibonacci(i))
+    console.log(fibonacci(i))
