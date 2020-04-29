@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Este programa resuelve el problema de las líneas de ensamblaje empleando
@@ -33,11 +34,18 @@ public class EnsamblajeProgDinamica {
 		int[][] tiempos = { {5, 1, 1}, {3, 3, 1} };  // Tiempos por línea de ensamblaje (línea: fila; tiempo: columna)
 		int[] entradas = {1,1}; // Tiempo extra por entrar a una línea
 		int[] salidas = {1,1}; // Tiempo extra por salir de una línea al camión
-		int paso[] = {1,2}; // Tiempo que se tarda en pasar de una línea a otra
+		int[] paso = {1,2}; // Tiempo que se tarda en pasar de una línea a otra
+
+		System.out.println("Se va a resolver el problema para las estaciones de tiempos:\n");
+		System.out.println("Línea superior: " + Arrays.toString(tiempos[0]));
+		System.out.println("Línea inferior: " + Arrays.toString(tiempos[1]));
+		System.out.println("Entradas a superior e inferior:" + Arrays.toString(entradas));
+		System.out.println("Salidas a superior e inferior:" + Arrays.toString(salidas));
+		System.out.println("Paso a superior e inferior:" + Arrays.toString(paso));
 
 		int[][] optimizacion = resolverEstaciones(tiempos, entradas, salidas, paso);
 		ArrayList<String> solucion = obtenerCamino(optimizacion);
-		System.out.println("La solución al problema es: " + solucion);
+		System.out.println("\nLa solución al problema es: " + solucion);
 		System.out.println("Porque la estructura quedó:");
 
 		for (int i=0; i<2; i++) {
