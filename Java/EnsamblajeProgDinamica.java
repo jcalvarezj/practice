@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * de un algoritmo que ensamble un carro empleando el menor tiempo posible, y
  * con una complejidad de tiempo de ejecución óptima 
  *
- * Problemas triviales:
+ * Componentes del problema:
  *
  * 		T(x,y) el tiempo óptimo para x = numero línea; y = numero de estación
  * 		S(x,y) el valor del tiempo que toma ensamblar en la estación y de la línea x
