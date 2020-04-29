@@ -12,10 +12,5 @@ function fibonacci(n) {
     return fibonacciMemoization(n, [0, 1]);
 }
 
-console.log(fibonacci(0))
-console.log(fibonacci(1))
-console.log(fibonacci(2))
-console.log(fibonacci(3))
-console.log(fibonacci(4))
-console.log(fibonacci(5))
-console.log(fibonacci(6))
+for (let i = 0; i < 7; i++)
+	console.log(fibonacci(i))
