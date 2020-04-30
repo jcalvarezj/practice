@@ -2,16 +2,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Este programa resuelve el problema de las líneas de ensamblaje empleando
- * programación dinámica. 
+ * Este programa resuelve el problema de las líneas de ensamblaje empleando programación dinámica. 
  *
- * Problema: Se tienen dos lineas de ensamblaje, cada una con estaciones en
- * que se añaden o ajustan partes del producto final. En cada estación el
- * proceso se demora un determinado tiempo, y hay una demora extra si se quiere
- * cambiar de línea de ensamblaje; además, el ingreso a las líneas tiene un
- * tiempo distinto, al igual que la salida a la entrega del producto. Se requiere
- * de un algoritmo que ensamble un carro empleando el menor tiempo posible, y
- * con una complejidad de tiempo de ejecución óptima 
+ * Problema: Se tienen dos lineas de ensamblaje de vehículos, cada una con estaciones en que se añaden o ajustan partes del producto final. 
+ *
+ * En cada estación el proceso se demora un determinado tiempo, y hay una demora extra si se quiere cambiar de línea de ensamblaje (no se
+ * asume el tiempo entre estaciones de la misma línea). Además, el ingreso a las líneas tiene un tiempo distinto, al igual que la salida a
+ * la entrega del producto. 
+ *
+ * Se requiere de un algoritmo que ensamble un carro empleando el menor tiempo posible, y con una complejidad de tiempo de ejecución óptima.
+ *
  *
  * Componentes del problema:
  *
@@ -21,14 +21,15 @@ import java.util.Arrays;
  * 		e(x) el tiempo de entrada a la línea x
  * 		s(x) el tiempo de salida de la línea x
  *
+ *
  * @author J. Alvarez
  */
 public class EnsamblajeProgDinamica {
 
 	/**
-		Punto de entrada del programa
-		@param args Argumentos del sistema
-	*/
+	 *	Punto de entrada del programa
+	 *	@param args Argumentos del sistema
+	 */
 	public static void main(String[] args) {
 		int N = 3;  // Cantidad de estaciones intermedias
 		int[][] tiempos = { {5, 1, 1}, {3, 3, 1} };  // Tiempos por línea de ensamblaje (línea: fila; tiempo: columna)
@@ -43,32 +44,33 @@ public class EnsamblajeProgDinamica {
 		System.out.println("Salidas a superior e inferior:" + Arrays.toString(salidas));
 		System.out.println("Paso a superior e inferior:" + Arrays.toString(paso));
 
-		int[][] optimizacion = resolverEstaciones(tiempos, entradas, salidas, paso);
-		ArrayList<String> solucion = obtenerCamino(optimizacion);
+		int[][] optimizacion = resolverEstaciones(tiempos, entradas, salidas, paso);  // Estructura de soluciones óptimas
+		ArrayList<String> solucion = obtenerCamino(optimizacion); // Solución definitiva
+
 		System.out.println("\nLa solución al problema es: " + solucion);
 		System.out.println("Porque la estructura quedó:");
 
 		for (int i=0; i<2; i++) {
-			for (int j=0; j<optimizacion[0].length; j++) {
+			for (int j=0; j<optimizacion[0].length; j++)
 				System.out.print(" "+optimizacion[i][j]+" ");
-			}
+
 			System.out.print("\n");
 		}
 	}
 
 	/**
-		Este es el método que resuelve el problema mediante programación dinámica
-		@param tiempos S(x, y)
-		@param entradas e(x)
-		@param salidas s(x)
-		@param paso P(x, y)
-		@return Matriz de enteros con las soluciones óptimas de los tiempos para cada estación
-	*/
+	 *	Este es el método que resuelve el problema mediante programación dinámica
+	 *	@param tiempos S(x, y)
+	 *	@param entradas e(x)
+	 *	@param salidas s(x)
+	 *	@param paso P(x, y)
+	 *	@return Matriz de enteros con las soluciones óptimas de los tiempos para cada estación
+	 */
 	public static int[][] resolverEstaciones(int[][] tiempos, int[] entradas, int[] salidas, int[] paso) {
-		int N = tiempos[0].length+1;		// Una columna de más para el manejo de las salidas
+		int N = tiempos[0].length + 1;		// Una columna de más para el manejo de las salidas
 		int[][] tiemposOptimos = new int[2][N];
 
-		// Soluciones triviales
+		// Soluciones triviales (se adecúan los índices para implementación)
 		// T(1,1) = e(1) + S(1,1)
 		// T(2,1) = e(2) + S(2,1)
 		tiemposOptimos[0][0] = entradas[0] + tiempos[0][0];
@@ -92,10 +94,10 @@ public class EnsamblajeProgDinamica {
 
 
 	/**
-		Permite obtener la solución definitiva del problema, recorriendo la estructura de soluciones óptimas
-		@param estructura La estructura de soluiones óptimas
-		@return Lista de recorridos denotados como Strings de ({línea}, {estación})
-	*/
+	 *	Permite obtener la solución definitiva del problema, recorriendo la estructura de soluciones óptimas
+	 *	@param estructura La estructura de soluiones óptimas
+	 *	@return Lista de recorridos denotados como Strings de ({línea}, {estación})
+	 */
 	public static ArrayList<String> obtenerCamino(int[][] estructura) {
 		ArrayList<String> camino = new ArrayList<String>();
 
@@ -109,11 +111,11 @@ public class EnsamblajeProgDinamica {
 	}
 
 	/**
-		Retorna un string de la forma ({a}, {b})
-		@param a Primer valor
-		@param b Segundo valor
-		@return String de la forma ({a}, {b})
-	*/
+	 *	Retorna un string de la forma ({a}, {b})
+	 *	@param a Primer valor
+	 *	@param b Segundo valor
+	 *	@return String de la forma ({a}, {b})
+	 */
 	public static String str(int a, int b) {
 		return "("+a+","+b+")";
 	}
