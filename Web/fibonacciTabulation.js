@@ -13,4 +13,4 @@ function fibonacciTabulation(n) {
 }
 
 for (let i = 0; i < 7; i++)
-    console.log(fibonacciTabulation(i))
+	console.log(fibonacciTabulation(i))
