@@ -13,7 +13,6 @@ This is my personal repository for programming examples I wrote in different lan
 * [Python 2.7](/Python2.7)
 * [Python 3](/Python3)
 * [NodeJS](/nodeJS)
-* [HTML and JS](/Web)
 
 These mostly include finished functional drafts from my learning process. Each top-level files and folders correspond to unique examples.
 
