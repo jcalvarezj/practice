@@ -45,7 +45,7 @@ public class EnsamblajeProgDinamica {
 		System.out.println("Paso a superior e inferior:" + Arrays.toString(paso));
 
 		int[][] optimizacion = resolverEstaciones(tiempos, entradas, salidas, paso);  // Estructura de soluciones óptimas
-		ArrayList<String> solucion = obtenerCamino(optimizacion); // Solución definitiva
+		String[] solucion = obtenerCamino(optimizacion); // Solución definitiva
 
 		System.out.println("\nLa solución al problema es: " + solucion);
 		System.out.println("Porque la estructura quedó:");
@@ -98,14 +98,14 @@ public class EnsamblajeProgDinamica {
 	 *	@param estructura La estructura de soluiones óptimas
 	 *	@return Lista de recorridos denotados como Strings de ({línea}, {estación})
 	 */
-	public static ArrayList<String> obtenerCamino(int[][] estructura) {
-		ArrayList<String> camino = new ArrayList<String>();
+	public static String[] obtenerCamino(int[][] estructura) {
+		String[] camino = new String[estructura[0].length];
 
 		for (int i=0; i<estructura[0].length; i++)
 			if (estructura[0][i] < estructura[1][i])
-				camino.add(str(0,i));
+				camino[i] = str(0,i);
 			else
-				camino.add(str(1,i));
+				camino[i] = str(1,i);
 
 		return camino;
 	}
