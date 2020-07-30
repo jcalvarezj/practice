@@ -1,6 +1,6 @@
 # Practice Repository
 
-This is my personal repository for programming examples I wrote in different languages:
+This is my personal collection of programming examples I have written in different languages:
 
 * [C](/C)
 * [C++](/C++)
