@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-	float notas[5][6] = {
+	float grades[5][6] = {
 		{10,6,8,8,9,0},
 		{6,6.5,7,7.5,8,0},
 		{8,8,9,9,10,0},
@@ -13,9 +13,9 @@ int main() {
 
 	for(i=0; i<5; i++) {
 		for(j=0; j<5; j++)
-			notas[i][5] += notas[i][j];
-		notas[i][5] /= 5;
-		printf("El promedio de la fila %i es %f\n",i,notas[i][5]);
+			grades[i][5] += grades[i][j];
+		grades[i][5] /= 5;
+		printf("The average for row %i is %f\n",i,grades[i][5]);
 	}
 
 	return 0;

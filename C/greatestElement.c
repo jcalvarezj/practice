@@ -1,17 +1,17 @@
 #include <stdio.h>
 
 int main() {
-	int tam;
-	printf("Ingresa el tamaño del arreglo: ");
-	scanf("%i",&tam);
+	int N;
+	printf("Enter the size of the array: ");
+	scanf("%i",&N);
 
 	int i = 0;
-	int numeros[tam];
+	int numeros[N];
 	
 	int mayor;
 
 	do {
-		printf("Valor[%i]: ",i);
+		printf("Value[%i]: ",i);
 		scanf("%i",&numeros[i]);
 		if(i == 0)
 			mayor = numeros[i];
@@ -19,10 +19,9 @@ int main() {
 			if (numeros[i] > mayor)
 				mayor = numeros[i];
 		i++;
-	} while(i<tam);
+	} while(i<N);
 
-	printf("El mayor es: %i\n",mayor);
-	
+	printf("The maximum is %i\n",mayor);	
 
 	return 0;
 }
