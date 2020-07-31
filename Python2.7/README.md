@@ -1,4 +1,4 @@
-# Python
+# Python 2.7
 
 This folder contains some exercises I solved using the Python 2.7 programming language.
 
