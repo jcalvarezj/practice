@@ -12,7 +12,7 @@ def prompt_user(text):
     This function prompts the user to input something and returns that input.
     """
     print(text)
-    return input();
+    return input()
 
 
 def first_non_repeating_string(text):
