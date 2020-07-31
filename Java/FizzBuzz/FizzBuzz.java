@@ -1,15 +1,14 @@
 /*
  * This is a small program that implements unit tests with JUnit
- * Based on https://medium.com/@pelensky/java-tdd-with-junit-without-using-an-id
- * e-cd24d38adff
+ * Based on https://medium.com/@pelensky/java-tdd-with-junit-without-using-an-ide-cd24d38adff
  */
 
 /*
  * This class represents the FizzBuzz class; it works as follows:
- * 1. If the number is divisible by 3, the program returns “Fizz”,
- * 2. if the number is divisible by 5, the program returns “Buzz”,
+ * 1. If the number is divisible by 3, the program returns "Fizz",
+ * 2. if the number is divisible by 5, the program returns "Buzz",
  * 3. if the number is divisible by both three and five, the program returns
- * “FizzBuzz”,
+ * "FizzBuzz",
  * Finally, if the number is not divisible by 3 or 5, the program returns the
  * number.
  */

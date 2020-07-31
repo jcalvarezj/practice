@@ -47,14 +47,11 @@ public class Streams {
 		List<A> as = new ArrayList<>();
 		IntStream.range(1,4).forEach(index -> as.add(new A("a"+index)));
 		as.forEach(a -> IntStream.range(1,4).forEach(index -> a.bs.add(new B("b"+index+" of "+a.name))));
-		//System.out.println(""+as);
-		//as.forEach(a -> System.out.println(""+a.bs));
 		as.stream().flatMap(a -> a.bs.stream()).forEach(flat -> System.out.println(flat));
 	}
 }
 
 class Person {
-
 	String name;
 	int age;
 

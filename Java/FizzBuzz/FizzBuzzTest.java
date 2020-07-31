@@ -1,7 +1,6 @@
 /*
  * This is a small program that implements unit tests with JUnit
- * Based on https://medium.com/@pelensky/java-tdd-with-junit-without-using-an-id
- * e-cd24d38adff
+ * Based on https://medium.com/@pelensky/java-tdd-with-junit-without-using-an-ide-cd24d38adff
  * Requires JUnit JAR file on same directory 
  * Compile and run accordingly to the JUnit version
  * Compile with javac -cp .:junit-4.10.jar FizzBuzzTest.java

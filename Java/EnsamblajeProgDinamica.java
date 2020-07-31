@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * Este programa resuelve el problema de las líneas de ensamblaje empleando programación dinámica. 
  *
@@ -16,12 +14,16 @@ import java.util.Arrays;
  *
  * 		T(x,y) el tiempo óptimo para x = numero línea; y = numero de estación
  * 		S(x,y) el valor del tiempo que toma ensamblar en la estación y de la línea x
- * 		P(x,y) el tiempo que toma pasar de la linea x a la y
+ * 		P(x) el tiempo que toma pasar a la linea x
  * 		e(x) el tiempo de entrada a la línea x
  * 		s(x) el tiempo de salida de la línea x
  *
- *
  * @author J. Alvarez
+ */
+import java.util.Arrays;
+
+/**
+ *	Esta clase resuelve el problema de las líneas de ensamblaje y ejecuta el programa
  */
 public class EnsamblajeProgDinamica {
 
@@ -46,7 +48,7 @@ public class EnsamblajeProgDinamica {
 		int[][] optimizacion = resolverEstaciones(tiempos, entradas, salidas, paso);  // Estructura de soluciones óptimas
 		String[] solucion = obtenerCamino(optimizacion); // Solución definitiva
 
-		System.out.println("\nLa solución al problema es: " + solucion);
+		System.out.println("\nLa solución al problema es: " + Arrays.toString(solucion));
 		System.out.println("Porque la estructura quedó:");
 
 		for (int i=0; i<2; i++) {
@@ -90,7 +92,6 @@ public class EnsamblajeProgDinamica {
 
 		return tiemposOptimos;
 	}
-
 
 	/**
 	 *	Permite obtener la solución definitiva del problema, recorriendo la estructura de soluciones óptimas

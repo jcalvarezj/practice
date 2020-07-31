@@ -3,7 +3,8 @@
  * A simple prgram with a Remote Controller that makes a lightbulb turn on and off.
  * The idea is to make it as less coupled as possible, and to be able to have freedom
  * working with the functions in different ways.
- * Based on https://dzone.com/articles/design-patterns-command and https://github.com/kamranahmedse/design-patterns-for-humans
+ * Based on https://dzone.com/articles/design-patterns-command and 
+ * https://github.com/kamranahmedse/design-patterns-for-humans
  */
 
 
