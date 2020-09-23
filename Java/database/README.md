@@ -11,7 +11,7 @@ The database can be imported from the games\_tournament.sql script. It requires 
 1. CREATE DATABASE games\_tournament;
 2. mysql -p \<user with privileges\> -p games\_tournament < games\_tournament.sql
 3. CREATE USER 'games\_tournament'@'localhost' IDENTIFIED\_BY 'games\_tournament';
-4. GRANT ALL PRIVILEGES ON games\_tournament.* TO 'games_tournament'@'localhost';
+4. GRANT ALL PRIVILEGES ON games\_tournament.\* TO 'games_tournament'@'localhost';
 
 
 Javadoc can be generated into a _doc_ folder using **javadoc -d doc src/\*.java**
