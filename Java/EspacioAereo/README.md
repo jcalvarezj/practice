@@ -8,4 +8,4 @@ Execute the generated JAR using **java -jar EspacioAereo.jar**
 
 There are example game maps for loading on the *parametros* folder
 
-Made by Juan C. Alvarez and Andrez R. Alvarez
+Made by Juan C. Alvarez and Andres R. Alvarez
