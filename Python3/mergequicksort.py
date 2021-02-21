@@ -36,7 +36,7 @@ def merge(numbers, left, right):
     print(f'\t~~ LEADS TO ~~ ---------- {numbers[0:len(numbers)]}')
 
 
-def mergesort(numbers, low, high):
+def mergesort(numbers):
     """
     In-place sorting of a list of numbers using mergesort
     (Chooses partition point as the exact middle point)
@@ -48,16 +48,18 @@ def mergesort(numbers, low, high):
     # 0. Base case (Lists of size == 1 are already solved; do nothing). Solve for
     #    bigger problems
 
-    if low < high:
+    if len(numbers) > 1:
         # 1. Divide
-        mid = (high - low) // 2
+        mid = len(numbers) // 2
+        left = numbers[:mid]
+        right = numbers[mid:len(numbers)]
 
         # 2. Conquer
-        mergesort(numbers, low, mid)
-        mergesort(numbers, mid + 1, high)
+        mergesort(left)
+        mergesort(right)
 
         # 3. Combine
-        merge(numbers, low, mid, high)
+        merge(numbers, left, right)
 
 
 def partition(numbers, low, high):
