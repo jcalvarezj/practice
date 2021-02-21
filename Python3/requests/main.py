@@ -5,6 +5,7 @@ The Cat API (https://thecatapi.com/).
 """
 import json
 import urllib_reqs
+import requests_reqs
 
 url = 'https://api.thecatapi.com/v1/images/search'
 
@@ -17,17 +18,15 @@ if __name__ == '__main__':
         if option == 1:
             make_request = urllib_reqs.make_request
         elif option == 2:
-            pass
-            #make_request = urllib_reqs.make_request
+            make_request = requests_reqs.make_request
         elif option == 3:
             pass
             #make_request = urllib_reqs.make_request
         else:
             raise ValueError()
 
-        raw_response = make_request(url)
-        dict_response = json.loads(raw_response)
+        dict_response = make_request(url)
 
-        print(dict_response[0]['url'])
+        print(f'Your picture is at {dict_response[0]["url"]}')
     except ValueError:
         print('Hey, only options 1 to 3!!!')
