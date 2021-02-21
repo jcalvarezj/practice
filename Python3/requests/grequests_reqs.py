@@ -25,13 +25,14 @@ def get_request(url):
     if responses[0].status_code == 200:
         return responses[0].json()
     else:
+        print(f'The request failed with code {response[0].status_code}')
         return None
 
 
 def post_request(url, dict_data):
     """
     Sends a 'grequests' request using the POST method on the specified URL and
-    the input data. Returns a json response
+    the input data. Returns a json response or None if failed
     """
     pending_requests = [grequests.post(url, json = dict_data)]  # List of "Promises"
 
@@ -41,5 +42,6 @@ def post_request(url, dict_data):
     if responses[0].status_code == 200:
         return responses[0].json()
     else:
+        print(f'The request failed with code {response[0].status_code}')
         return None
 
