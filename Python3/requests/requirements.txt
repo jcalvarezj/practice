@@ -1,7 +1,6 @@
 gevent==20.6.2
 greenlet==0.4.16
 grequests==0.6.0
-httplib2==0.9.2
 hyperlink==19.0.0
 requests==2.24.0
 requests-unixsocket==0.1.5
