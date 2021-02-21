@@ -6,7 +6,7 @@ from urllib3 import PoolManager
 
 http = PoolManager()
 
-def make_request(url):
+def get_request(url):
     """
     Performs a urllib3 request on the specified URL and returns the raw string of the
     response
