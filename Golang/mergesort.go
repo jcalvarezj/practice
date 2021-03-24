@@ -31,7 +31,7 @@ func merge(array []int, left []int, right []int) {
 		k++
 	}
 
-	fmt.Println("\t with: ", array, left, right)
+	fmt.Println("\tResult: ", array, left, right)
 }
 
 
