@@ -5,6 +5,7 @@ This is my personal collection of programming examples I have written in differe
 * [C](/C)
 * [C++](/C++)
 * [Dart+Flutter](/Dart+Flutter)
+* [Golang](/Golang)
 * [HTML+CSS+JS](/Web)
 * [Java](/Java)
 * [Kotlin](/Kotlin)
