@@ -2,6 +2,7 @@
 
 This is my personal collection of programming examples I have written in different languages:
 
+* [Bash](/Bash)
 * [C](/C)
 * [C++](/C++)
 * [Dart+Flutter](/Dart+Flutter)
